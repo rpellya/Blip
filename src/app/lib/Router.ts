@@ -33,8 +33,11 @@ export class Router {
 
         if (route) {
             if (this.currentPage) {
+
                 this.currentPage.destroy!();
+
             }
+
 
             this.currentPage = new route.strategy();
             const appElement = document.querySelector('.page') as HTMLElement;
