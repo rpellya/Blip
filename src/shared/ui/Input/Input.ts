@@ -16,7 +16,7 @@ interface InputProps {
 
 export class Input extends Component<InputProps> {
     protected events(): Array<[string, EventListener]> {
-        throw new Error('Method not implemented.');
+        return [];
     }
 
     private inputElement: HTMLInputElement | null = null;
@@ -25,7 +25,7 @@ export class Input extends Component<InputProps> {
         super('div', props);
     }
 
-    private setProps(props: Partial<InputProps>): void {
+    setProps(props: Partial<InputProps>): void {
         this.props = { ...this.props, ...props };
         this.render();
     }

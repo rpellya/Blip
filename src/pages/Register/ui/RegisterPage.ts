@@ -20,30 +20,35 @@ export class RegisterPage implements PageStrategy {
                     type: 'email',
                     name: 'email',
                     label: 'Почта',
+                    placeholder: 'pellya@ex.com',
                     required: true
                 }),
                 new Input({
                     type: 'text',
                     name: 'login',
                     label: 'Логин',
+                    placeholder: 'ivan_2010',
                     required: true
                 }),
                 new Input({
                     type: 'text',
                     name: 'first_name',
                     label: 'Имя',
+                    placeholder: 'Иван',
                     required: true
                 }),
                 new Input({
                     type: 'text',
                     name: 'second_name',
                     label: 'Фамилия',
+                    placeholder: 'Иванов',
                     required: true
                 }),
                 new Input({
                     type: 'tel',
                     name: 'phone',
                     label: 'Телефон',
+                    placeholder: '+7 (909) 967 30 30',
                     required: true
                 }),
                 new Input({
