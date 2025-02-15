@@ -79,6 +79,10 @@ export class RegisterPage implements PageStrategy {
         this.authForm.mount(appElement);
     }
 
+    mount(appElement: HTMLElement): void {
+        this.authForm.mount(appElement);
+    }
+
     destroy(): void {
         this.authForm.destroy();
     }

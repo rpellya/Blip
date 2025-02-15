@@ -1,0 +1,11 @@
+.message-feed {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__placeholder {
+        font-size: 24px;
+        color: #adb5bd;
+    }
+}

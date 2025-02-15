@@ -23,6 +23,9 @@ export class NotFoundPage implements PageStrategy {
         };
 
         appElement.innerHTML = Handlebars.compile(template)(context);
+    }
+
+    mount(appElement: HTMLElement): void {
         this.link.mount(appElement);
     }
 

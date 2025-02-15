@@ -1,3 +1,4 @@
+import { ChatPage } from 'pages/Chat';
 import { Router } from './lib/Router';
 import { LoginPage } from 'pages/Login';
 import { NotFoundPage } from 'pages/NotFound';
@@ -15,6 +16,7 @@ export class App {
         this.router.registerRoute('/', LoginPage);
         this.router.registerRoute('/sign-in', LoginPage);
         this.router.registerRoute('/sign-up', RegisterPage);
+        this.router.registerRoute('/chat', ChatPage);
         this.router.registerRoute('*', NotFoundPage);
     }
 

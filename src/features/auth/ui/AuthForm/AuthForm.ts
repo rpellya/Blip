@@ -22,6 +22,7 @@ export class AuthForm {
 
     render(): string {
         return Handlebars.compile(template)({
+            ...this.props,
             title: this.props.title,
             inputs: this.props.inputs.map(input => input.render()),
             button: this.props.button.render(),

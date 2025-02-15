@@ -11,8 +11,9 @@ interface AuthLayoutProps {
 
 export class AuthLayout extends Component<AuthLayoutProps> {
     protected events(): Array<[string, EventListener]> {
-        throw new Error('Method not implemented.');
+        return [];
     }
+
     constructor(props: AuthLayoutProps) {
         super('div', props);
     }
@@ -20,10 +21,7 @@ export class AuthLayout extends Component<AuthLayoutProps> {
     render(): string {
         return Handlebars.compile(template)(this.props);
     }
-    private setProps(props: Partial<AuthLayoutProps>): void {
-        this.props = { ...this.props, ...props };
-        this.render();
-    }
+
     addContent(content: string): void {
         this.setProps({ ...this.props, content });
     }

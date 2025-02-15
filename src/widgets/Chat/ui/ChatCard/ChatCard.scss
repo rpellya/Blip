@@ -1,0 +1,62 @@
+.chat-card {
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:not(:first-child) {
+        border-top: 1px solid #eaeaea;
+    }
+    &:hover {
+        background: #e4edfd;
+    }
+
+    &--active {
+        background: #e4edfd;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__time {
+        font-size: 12px;
+        color: #757575;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+
+        .chat-card__message {
+            margin: 0;
+            font-size: 13px;
+            color: #999999;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-card__badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: #3369f3;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            user-select: none;
+        }
+    }
+}

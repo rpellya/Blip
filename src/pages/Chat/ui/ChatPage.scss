@@ -1,0 +1,15 @@
+.chat-page {
+    display: flex;
+    height: 100vh;
+    flex: 1;
+
+    &__sidebar {
+        width: 310px;
+        border-right: 1px solid #e9ecef;
+        background: #fbfbfb;
+    }
+
+    &__chat {
+        flex: 1;
+    }
+}

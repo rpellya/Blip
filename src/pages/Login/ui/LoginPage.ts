@@ -12,7 +12,6 @@ export class LoginPage implements PageStrategy {
     constructor() {
         this.layout = new AuthLayout({ type: 'login' });
 
-
         this.authForm = new AuthForm({
             title: "Blip",
             inputs: [
@@ -31,7 +30,7 @@ export class LoginPage implements PageStrategy {
             ],
             button: new Button({ type: "submit", text: "Авторизоваться", theme: 'background' }),
             link: new Link({ text: "Нет аккаунта?", href: "/sign-up" }),
-            formId: "d",
+            formId: "login-form",
         });
 
         this.layout.addContent(this.authForm.render());
@@ -39,6 +38,10 @@ export class LoginPage implements PageStrategy {
 
     render(appElement: HTMLElement): void {
         appElement.innerHTML = this.layout.render();
+        this.authForm.mount(appElement);
+    }
+
+    mount(appElement: HTMLElement): void {
         this.authForm.mount(appElement);
     }
 
