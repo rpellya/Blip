@@ -33,7 +33,7 @@ export class Router {
 
         if (route) {
             if (this.currentPage) {
-                this.currentPage.destroy?.();
+                this.currentPage.destroy!();
             }
 
             this.currentPage = new route.strategy();
