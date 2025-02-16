@@ -1,31 +1,31 @@
 import Handlebars from 'handlebars';
-import template from './NotFound.hbs';
+import template from './ServerErrorPage.hbs';
 import { PageStrategy } from 'shared/lib/model/PageStrategies';
 import { ErrorPage } from 'widgets/ErrorPage';
-import './NotFoundPage.scss';
+import './ServerErrorPage.scss';
 
-export class NotFoundPage implements PageStrategy {
-    private erroPage: ErrorPage;
+export class ServerErrorPage implements PageStrategy {
+    private errorPage: ErrorPage;
 
     constructor() {
-        this.erroPage = new ErrorPage({
+        this.errorPage = new ErrorPage({
             textLink: 'Вернуться на главную',
-            code: 404,
-            message: 'Страница не найдена',
+            code: 500,
+            message: 'Ошибка сервера',
         });
     }
 
     render(appElement: HTMLElement): void {
         appElement.innerHTML = Handlebars.compile(template)({
-            erroPage: this.erroPage.render(),
+            erroPage: this.errorPage.render(),
         });
     }
 
     mount(appElement: HTMLElement): void {
-        this.erroPage.mount(appElement);
+        this.errorPage.mount(appElement);
     }
 
     destroy(): void {
-        this.erroPage.destroy();
+        this.errorPage.destroy();
     }
 }
