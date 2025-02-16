@@ -3,13 +3,14 @@ import template from './Button.hbs';
 import { Component } from 'shared/lib/Component';
 import './Button.scss';
 
-export type ButtonVariant = 'clear' | 'outline' | 'background';
+export type ButtonVariant = 'clear' | 'outline' | 'outline_red' | 'background';
 
 interface ButtonProps {
-    type?: 'button' | 'submit' | 'reset';
     text: string;
+    type?: 'button' | 'submit' | 'reset';
     theme?: ButtonVariant;
     className?: string;
+    href?: string;
     onClick?: () => void;
 }
 

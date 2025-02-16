@@ -32,6 +32,7 @@ export class LoginPage implements PageStrategy {
                 type: 'submit',
                 text: 'Авторизоваться',
                 theme: 'background',
+                href: '/chat',
             }),
             link: new Link({ text: 'Нет аккаунта?', href: '/sign-up' }),
             formId: 'login-form',

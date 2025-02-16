@@ -3,6 +3,8 @@ import Handlebars from 'handlebars';
 import template from './ChatPage.hbs';
 import { MessageFeed } from 'features/Message';
 import { Chat, ChatList } from 'widgets/Chat';
+import { ChatHeader } from 'features/Chat';
+import { Link } from 'shared/ui/Link/Link';
 import './ChatPage.scss';
 
 const mockChats: Chat[] = [
@@ -32,22 +34,23 @@ const mockChats: Chat[] = [
 export class ChatPage implements PageStrategy {
     private chatList: ChatList;
     private messageFeed: MessageFeed;
-
-    events(): Array<[string, EventListener]> {
-        return [];
-    }
+    private chatHeader: ChatHeader;
 
     constructor() {
-        this.chatList = new ChatList({
-            chats: mockChats,
-        });
+        this.chatList = new ChatList({ chats: mockChats });
         this.messageFeed = new MessageFeed();
+        this.chatHeader = new ChatHeader({
+            textLink: 'профиль',
+            link: new Link({ text: 'Профиль  >', href: '/profile' }),
+            placeholderSearch: 'поиск',
+        });
     }
 
     render(appElement: HTMLElement): void {
         const html = Handlebars.compile(template)({
             chatList: this.chatList.render(),
             messageFeed: this.messageFeed.render(),
+            chatHeader: this.chatHeader.render(),
         });
         appElement.innerHTML = html;
     }

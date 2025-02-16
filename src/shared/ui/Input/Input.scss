@@ -1,8 +1,12 @@
 .input-group {
     display: flex;
     flex-direction: column;
+    height: 36px;
+
     .input-label {
         text-align: left;
+        max-width: 150px;
+        width: 100%;
     }
 
     .input-field {
