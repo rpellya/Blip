@@ -6,7 +6,7 @@ Blip – это учебный проект по курсу middle frontend-ра
 
 ## Netlify
 
-- [Netlify](https://)
+- [Netlify](https://blip-chat.netlify.app/)
 
 ## Установка зависимостей
 
