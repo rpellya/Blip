@@ -38,12 +38,11 @@
     border: none;
 }
 
-
 .outline_red {
     border: 1px solid var(--red-light);
     color: var(--red-light);
     background-color: transparent;
-    
+
     .button-link {
         color: var(--red-light);
     }

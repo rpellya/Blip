@@ -1,6 +1,6 @@
-@use "variables/global" as *;
-@use "themes/light.scss" as *;
-@use "nullstyle";
+@use 'variables/global' as *;
+@use 'themes/light.scss' as *;
+@use 'nullstyle';
 
 body {
     font-weight: 500;

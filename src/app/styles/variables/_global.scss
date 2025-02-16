@@ -1,17 +1,6 @@
-// @font-face {
-//     font-family: Roboto;
-//     src: url("app/styles/fonts/Roboto-Regular.ttf") format("woff2");
-//     font-weight: 400;
-// }
-
-// @font-face {
-//     font-family: Roboto;
-//     src: url("app/styles/fonts/Roboto-Medium.ttf") format("woff2");
-//     font-weight: 500;
-// }
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap');
 :root {
-    --font-family-main: "Inter", serif;
+    --font-family-main: 'Inter', serif;
     --font-size-m: 16px;
     --font-line-m: 24px;
     --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
