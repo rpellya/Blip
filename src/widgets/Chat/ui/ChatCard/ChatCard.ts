@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import { Component } from 'shared/lib/Component';
 import template from './ChatCard.hbs';
 import { Chat } from '../../model/types/schema';
-import './ChatCard.scss'
+import './ChatCard.scss';
 
 export interface ChatCardProps {
     chat: Chat;
@@ -17,7 +17,7 @@ export class ChatCard extends Component<ChatCardProps> {
         super('div', {
             ...props,
             ...chat,
-            className: isActive ? 'chat-card chat-card--active' : 'chat-card'
+            className: isActive ? 'chat-card chat-card--active' : 'chat-card',
         });
     }
 
@@ -28,14 +28,12 @@ export class ChatCard extends Component<ChatCardProps> {
     setActive(isActive: boolean): void {
         this.setProps({
             ...this.props,
-            isActive
+            isActive,
         });
     }
 
     protected events(): Array<[string, EventListener]> {
-        return [
-            ['click', this.handleClick]
-        ];
+        return [['click', this.handleClick]];
     }
 
     private handleClick = (e: Event): void => {

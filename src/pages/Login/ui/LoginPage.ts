@@ -1,9 +1,9 @@
-import { PageStrategy } from "shared/lib/model/PageStrategies";
-import { AuthLayout } from "features/auth";
-import { AuthForm } from "features/auth";
-import { Input } from "shared/ui/Input/Input";
-import { Button } from "shared/ui/Button/Button";
-import { Link } from "shared/ui/Link/Link";
+import { PageStrategy } from 'shared/lib/model/PageStrategies';
+import { AuthLayout } from 'features/auth';
+import { AuthForm } from 'features/auth';
+import { Input } from 'shared/ui/Input/Input';
+import { Button } from 'shared/ui/Button/Button';
+import { Link } from 'shared/ui/Link/Link';
 
 export class LoginPage implements PageStrategy {
     private layout: AuthLayout;
@@ -13,24 +13,28 @@ export class LoginPage implements PageStrategy {
         this.layout = new AuthLayout({ type: 'login' });
 
         this.authForm = new AuthForm({
-            title: "Blip",
+            title: 'Blip',
             inputs: [
                 new Input({
-                    type: "text",
-                    name: "login",
-                    label: "Логин",
+                    type: 'text',
+                    name: 'login',
+                    label: 'Логин',
                     required: true,
                 }),
                 new Input({
-                    type: "password",
-                    name: "password",
-                    label: "Пароль",
+                    type: 'password',
+                    name: 'password',
+                    label: 'Пароль',
                     required: true,
                 }),
             ],
-            button: new Button({ type: "submit", text: "Авторизоваться", theme: 'background' }),
-            link: new Link({ text: "Нет аккаунта?", href: "/sign-up" }),
-            formId: "login-form",
+            button: new Button({
+                type: 'submit',
+                text: 'Авторизоваться',
+                theme: 'background',
+            }),
+            link: new Link({ text: 'Нет аккаунта?', href: '/sign-up' }),
+            formId: 'login-form',
         });
 
         this.layout.addContent(this.authForm.render());

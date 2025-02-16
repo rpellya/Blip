@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import template from './Link.hbs';
 import { Router } from 'app/lib/Router';
-import './Link.scss'
+import './Link.scss';
 
 interface LinkProps {
     href: string;
@@ -22,7 +22,7 @@ export class Link {
     render(): string {
         return Handlebars.compile(template)({
             ...this.props,
-            handleClick: this.handleClick.bind(this)
+            handleClick: this.handleClick.bind(this),
         });
     }
 

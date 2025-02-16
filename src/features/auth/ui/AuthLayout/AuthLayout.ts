@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import { Component } from 'shared/lib/Component';
 import template from './AuthLayout.hbs';
-import './AuthLayout.scss'
+import './AuthLayout.scss';
 
 interface AuthLayoutProps {
     title?: string;

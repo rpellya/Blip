@@ -2,7 +2,10 @@ export abstract class Component<T = any> {
     protected props: T;
     private element: HTMLElement | null = null;
 
-    constructor(protected tagName: string, props: T) {
+    constructor(
+        protected tagName: string,
+        props: T,
+    ) {
         this.props = props;
     }
 

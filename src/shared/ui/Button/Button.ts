@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import template from './Button.hbs';
 import { Component } from 'shared/lib/Component';
-import './Button.scss'
+import './Button.scss';
 
 export type ButtonVariant = 'clear' | 'outline' | 'background';
 
@@ -29,7 +29,9 @@ export class Button extends Component<ButtonProps> {
     }
 
     mount(parent: HTMLElement): void {
-        this.buttonElement = parent.querySelector(`button.${this.props.className}`);
+        this.buttonElement = parent.querySelector(
+            `button.${this.props.className}`,
+        );
         if (this.buttonElement && this.props.onClick) {
             this.buttonElement.addEventListener('click', this.handleClick);
         }

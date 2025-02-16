@@ -24,20 +24,20 @@ export class AuthForm {
         return Handlebars.compile(template)({
             ...this.props,
             title: this.props.title,
-            inputs: this.props.inputs.map(input => input.render()),
+            inputs: this.props.inputs.map((input) => input.render()),
             button: this.props.button.render(),
-            link: this.props.link.render()
+            link: this.props.link.render(),
         });
     }
 
     mount(parent: HTMLElement): void {
-        this.props.inputs.forEach(input => input.mount(parent));
+        this.props.inputs.forEach((input) => input.mount(parent));
         this.props.button.mount(parent);
         this.props.link.mount(parent);
     }
 
     destroy(): void {
-        this.props.inputs.forEach(input => input.destroy());
+        this.props.inputs.forEach((input) => input.destroy());
         this.props.button.destroy();
         this.props.link.destroy();
     }

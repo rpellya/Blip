@@ -1,4 +1,3 @@
-
 import Handlebars from 'handlebars';
 import { Component } from 'shared/lib/Component';
 import template from './ChatList.hbs';
@@ -15,23 +14,21 @@ export class ChatList extends Component {
 
     constructor(props: ChatListProps) {
         super('div', props);
-        this.chatCards = props.chats.map(chat =>
-            new ChatCard({ chat })
-        );
+        this.chatCards = props.chats.map((chat) => new ChatCard({ chat }));
     }
 
     render(): string {
         return Handlebars.compile(template)({
-            chats: this.chatCards.map(chat => chat.render())
+            chats: this.chatCards.map((chat) => chat.render()),
         });
     }
 
     mount(parent: HTMLElement): void {
-        this.chatCards.forEach(chat => chat.mount(parent));
+        this.chatCards.forEach((chat) => chat.mount(parent));
     }
 
     destroy(): void {
-        this.chatCards.forEach(chat => chat.destroy());
+        this.chatCards.forEach((chat) => chat.destroy());
     }
 
     events(): Array<[string, EventListener]> {

@@ -35,7 +35,9 @@ export class Input extends Component<InputProps> {
     }
 
     mount(parent: HTMLElement): void {
-        this.inputElement = parent.querySelector(`input[name="${this.props.name}"]`);
+        this.inputElement = parent.querySelector(
+            `input[name="${this.props.name}"]`,
+        );
         if (this.inputElement) {
             this.inputElement.addEventListener('input', this.handleInput);
         }

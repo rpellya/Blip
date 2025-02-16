@@ -1,4 +1,4 @@
-import { PageStrategy } from "shared/lib/model/PageStrategies";
+import { PageStrategy } from 'shared/lib/model/PageStrategies';
 
 type Route = {
     path: string;
@@ -29,15 +29,14 @@ export class Router {
 
     private handleRoute(): void {
         const path = window.location.pathname;
-        const route = this.routes.find(r => r.path === path) || this.routes.find(r => r.path === '*');
+        const route =
+            this.routes.find((r) => r.path === path) ||
+            this.routes.find((r) => r.path === '*');
 
         if (route) {
             if (this.currentPage) {
-
                 this.currentPage.destroy!();
-
             }
-
 
             this.currentPage = new route.strategy();
             const appElement = document.querySelector('.page') as HTMLElement;

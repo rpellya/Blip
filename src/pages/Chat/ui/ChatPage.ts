@@ -3,7 +3,7 @@ import Handlebars from 'handlebars';
 import template from './ChatPage.hbs';
 import { MessageFeed } from 'features/Message';
 import { Chat, ChatList } from 'widgets/Chat';
-import './ChatPage.scss'
+import './ChatPage.scss';
 
 const mockChats: Chat[] = [
     {
@@ -11,21 +11,21 @@ const mockChats: Chat[] = [
         title: 'Мама',
         lastMessage: 'Как дела, сынок?',
         time: '12:10',
-        unreadCount: 1
+        unreadCount: 1,
     },
     {
         id: '2',
         title: 'Васек',
         lastMessage: 'Оле оле! Ливерпуль!',
         time: '12:00',
-        unreadCount: 0
+        unreadCount: 0,
     },
     {
         id: '1',
         title: 'Андрюха',
         lastMessage: 'Вы: Как ты, родной?',
         time: '10:45',
-        unreadCount: 2
+        unreadCount: 2,
     },
 ];
 
@@ -39,7 +39,7 @@ export class ChatPage implements PageStrategy {
 
     constructor() {
         this.chatList = new ChatList({
-            chats: mockChats
+            chats: mockChats,
         });
         this.messageFeed = new MessageFeed();
     }
@@ -47,7 +47,7 @@ export class ChatPage implements PageStrategy {
     render(appElement: HTMLElement): void {
         const html = Handlebars.compile(template)({
             chatList: this.chatList.render(),
-            messageFeed: this.messageFeed.render()
+            messageFeed: this.messageFeed.render(),
         });
         appElement.innerHTML = html;
     }
