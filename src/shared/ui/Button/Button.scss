@@ -1,0 +1,49 @@
+.button {
+    min-height: 20px;
+    align-items: center;
+    cursor: pointer;
+    color: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    &:hover {
+        transition: 0.1s;
+        opacity: 0.8;
+    }
+
+    &-link {
+        display: contents;
+        text-decoration: none;
+        color: var(--bg-color);
+    }
+}
+
+.clear,
+.clearInverted {
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.outline {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+.background {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+}
+
+.outline_red {
+    border: 1px solid var(--red-light);
+    color: var(--red-light);
+    background-color: transparent;
+
+    .button-link {
+        color: var(--red-light);
+    }
+}

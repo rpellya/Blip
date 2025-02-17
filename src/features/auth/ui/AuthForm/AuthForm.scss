@@ -1,0 +1,36 @@
+.authForm-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    height: 100%;
+
+    .authForm-title {
+        color: var(--primary-color);
+        text-align: center;
+        padding: 25px;
+    }
+
+    .authForm-form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 25px;
+        height: 100%;
+        width: 340px;
+
+        .input-group {
+            .input-label {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .authForm-actions {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+
+        .button {
+            height: 38px;
+        }
+    }
+}

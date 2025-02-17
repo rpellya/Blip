@@ -1,0 +1,25 @@
+.input-group {
+    display: flex;
+    flex-direction: column;
+    min-height: 36px;
+
+    .input-label {
+        text-align: left;
+        max-width: 150px;
+        width: 100%;
+    }
+
+    .input-field {
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 100%;
+        color: var(--secondary-color);
+        text-shadow: 0 0 0 var(--primary-color);
+        border-bottom: 1px solid var(--primary-color);
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

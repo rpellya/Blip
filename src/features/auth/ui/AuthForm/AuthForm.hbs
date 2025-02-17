@@ -1,0 +1,17 @@
+<div class='authForm-container'>
+    <h1 class='authForm-title'>{{title}}</h1>
+    <form class='authForm-form' id='{{formId}}'>
+        {{#each inputs}}
+            {{{this}}}
+        {{/each}}
+
+        <div class='authForm-actions'>
+            <div class='button button__submit'>
+                {{{button}}}
+            </div>
+            <div class='button button__link'>
+                {{{link}}}
+            </div>
+        </div>
+    </form>
+</div>

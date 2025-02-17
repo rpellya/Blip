@@ -1,0 +1,16 @@
+<div class="input-group {{#if error}}input-group__error{{/if}}">
+    <label class="input-label" for="{{name}}">{{label}}</label>
+    
+    <input 
+        type="{{type}}"
+        id="{{name}}"
+        name="{{name}}"
+        class="input-field"
+        placeholder="{{placeholder}}"
+        {{#if required}}required{{/if}}
+    />
+    
+    {{#if helperText}}
+        <span class="input-helper">{{helperText}}</span>
+    {{/if}}
+</div>

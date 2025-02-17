@@ -1,0 +1,16 @@
+@use 'variables/global' as *;
+@use 'themes/light.scss' as *;
+@use 'nullstyle';
+
+body {
+    font-weight: 500;
+    font: var(--font-m);
+    color: var(--secondary-color);
+}
+
+.page {
+    background: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
