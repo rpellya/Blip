@@ -1,0 +1,16 @@
+.error-page {
+    &__code {
+        font-size: 8rem;
+        color: var(--primary-color);
+        display: contents;
+    }
+
+    &__message {
+        font-size: var(--font-size-xl);
+        margin: 20px 0;
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+}

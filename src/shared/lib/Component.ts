@@ -1,4 +1,4 @@
-export abstract class Component<T = any> {
+export abstract class Component<T = unknown> {
     protected props: T;
     private element: HTMLElement | null = null;
 

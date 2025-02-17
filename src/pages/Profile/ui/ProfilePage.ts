@@ -1,21 +1,21 @@
 import { PageStrategy } from 'shared/lib/model/PageStrategies';
 import { ProfileForm } from 'entities/Profile';
-import { AuthLayout } from 'features/auth';
+import template from './ProfilePage.hbs';
+import Handlebars from 'handlebars';
+import './ProfilePage.scss';
 
 export class ProfilePage implements PageStrategy {
     private profileForm: ProfileForm;
-    private layout: AuthLayout;
 
     constructor() {
-        this.layout = new AuthLayout({ type: 'login' }); // просто как пример добавил, надо это вынести в виджет скорее всего и переиспользовать не только для login и register
-
         this.profileForm = new ProfileForm();
-
-        this.layout.addContent(this.profileForm.render());
     }
 
     render(appElement: HTMLElement): void {
-        appElement.innerHTML = this.layout.render();
+        const html = Handlebars.compile(template)({
+            profileForm: this.profileForm.render(),
+        });
+        appElement.innerHTML = html;
     }
 
     mount(appElement: HTMLElement): void {

@@ -1,7 +1,11 @@
-<button 
-  type="{{type}}" 
-  class="button {{className}}{{theme}}"
-  {{#if onClick}}data-action="click"{{/if}}
->
+{{#if href}}
+<a href='{{href}}' class='button-link' data-action='click'>
+  <button type="{{type}}" class="button {{className}}{{theme}}" {{#if onClick}}data-action="click" {{/if}}>
+    {{text}}
+  </button>
+</a>
+{{else}}
+<button type="{{type}}" class="button {{className}}{{theme}}" {{#if onClick}}data-action="click" {{/if}}>
   {{text}}
 </button>
+{{/if}}

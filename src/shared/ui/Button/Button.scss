@@ -10,6 +10,12 @@
         transition: 0.1s;
         opacity: 0.8;
     }
+
+    &-link {
+        display: contents;
+        text-decoration: none;
+        color: var(--bg-color);
+    }
 }
 
 .clear,
@@ -30,4 +36,14 @@
     background: var(--primary-color);
     color: var(--bg-color);
     border: none;
+}
+
+.outline_red {
+    border: 1px solid var(--red-light);
+    color: var(--red-light);
+    background-color: transparent;
+
+    .button-link {
+        color: var(--red-light);
+    }
 }

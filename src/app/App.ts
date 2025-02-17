@@ -4,6 +4,7 @@ import { LoginPage } from 'pages/Login';
 import { NotFoundPage } from 'pages/NotFound';
 import { RegisterPage } from 'pages/Register';
 import { ProfilePage } from 'pages/Profile';
+import { ServerErrorPage } from 'pages/ServerError';
 
 export class App {
     private router: Router;
@@ -19,6 +20,7 @@ export class App {
         this.router.registerRoute('/sign-up', RegisterPage);
         this.router.registerRoute('/chat', ChatPage);
         this.router.registerRoute('/profile', ProfilePage);
+        this.router.registerRoute('/error-500', ServerErrorPage);
         this.router.registerRoute('*', NotFoundPage);
     }
 
