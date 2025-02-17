@@ -9,8 +9,9 @@ interface ProfileFormProps {
     avatar: string;
     email: string;
     login: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
+    display_name: string;
     phone: string;
     oldPassword: string;
     newPassword: string;
@@ -22,8 +23,9 @@ export class ProfileForm extends Component<ProfileFormProps> {
             avatar: 'https://avatars.githubusercontent.com/u/103450915?v=4',
             email: 'user@example.com',
             login: 'user123',
-            firstName: 'Иван',
-            lastName: 'Иванов',
+            first_name: 'Иван',
+            last_name: 'Иванов',
+            display_name: 'Ванчоус',
             phone: '+7 900 000-00-00',
             oldPassword: '***',
             newPassword: '***',
@@ -57,16 +59,23 @@ export class ProfileForm extends Component<ProfileFormProps> {
                 new Input({
                     name: 'first_name',
                     label: 'Имя',
-                    value: this.props.firstName,
+                    value: this.props.first_name,
                     type: 'name',
                     placeholder: 'Роман',
                 }),
                 new Input({
                     name: 'second_name',
                     label: 'Фамилия',
-                    value: this.props.lastName,
+                    value: this.props.last_name,
                     type: 'name',
                     placeholder: 'Пелля',
+                }),
+                new Input({
+                    name: 'display_name',
+                    label: 'Отображаемое имя',
+                    value: this.props.display_name,
+                    type: 'name',
+                    placeholder: 'Pellya',
                 }),
                 new Input({
                     name: 'phone',
