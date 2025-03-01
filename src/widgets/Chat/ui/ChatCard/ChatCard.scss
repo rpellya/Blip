@@ -1,13 +1,12 @@
 .chat-card {
     padding: 12px;
-    cursor: pointer;
     transition: background 0.2s ease;
     cursor: pointer;
-    transition: 0.3s;
 
     &:not(:first-child) {
         border-top: 1px solid #eaeaea;
     }
+
     &:hover {
         background: #e4edfd;
     }
@@ -40,7 +39,7 @@
         .chat-card__message {
             margin: 0;
             font-size: 13px;
-            color: #999999;
+            color: #999;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
