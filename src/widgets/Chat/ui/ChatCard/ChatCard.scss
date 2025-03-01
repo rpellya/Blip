@@ -4,15 +4,15 @@
     cursor: pointer;
 
     &:not(:first-child) {
-        border-top: 1px solid #eaeaea;
+        border-top: 1px solid var(--border-color-ea);
     }
 
     &:hover {
-        background: #e4edfd;
+        background: var(--skyblue);
     }
 
     &--active {
-        background: #e4edfd;
+        background: var(--skyblue);
     }
 
     &__header {
@@ -29,7 +29,7 @@
 
     &__time {
         font-size: 12px;
-        color: #757575;
+        color: var(--gray75);
     }
 
     &__content {
@@ -39,7 +39,7 @@
         .chat-card__message {
             margin: 0;
             font-size: 13px;
-            color: #999;
+            color: var(--gray99);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -51,8 +51,8 @@
             align-items: center;
             width: 20px;
             height: 20px;
-            background: #3369f3;
-            color: white;
+            background: var(--primary-color);
+            color: var(--white);
             border-radius: 50%;
             font-size: 12px;
             user-select: none;

@@ -5,4 +5,31 @@
     --secondary-color: #1e1e1e;
     --inverted-primary-color: #fbf8f4;
     --inverted-secondary-color: #e8af1f;
+
+    // white
+    --white: #fff;
+    --white-ef: #efefef;
+
+    // gray
+    --gray99: #999;
+    --gray75: #757575;
+
+    // blue
+    --skyblue: #e4edfd;
+
+    // border
+    --border-color-e9: #e9ecef;
+    --border-color-ea: #eaeaea;
+
+    // box-shadow
+    --shadow-bg-color: #e6e6e8;
+
+    // placeholder
+    --placeholder-color: var(--gray999);
+
+    // sidebar
+    --sidebar-bg-color: #fbfbfb;
+
+    // input
+    --input-bg-color: var(--white-ef);
 }
