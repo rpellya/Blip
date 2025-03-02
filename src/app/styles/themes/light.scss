@@ -9,6 +9,7 @@
     // white
     --white: #fff;
     --white-ef: #efefef;
+    --white-f8: #f8f8f8;
 
     // gray
     --gray99: #999;
@@ -26,6 +27,10 @@
 
     // placeholder
     --placeholder-color: var(--gray99);
+
+    // message
+    --message-bg-color: var(--white-f8);
+    --message-current-user-bg-color: var(--skyblue);
 
     // sidebar
     --sidebar-bg-color: #fbfbfb;

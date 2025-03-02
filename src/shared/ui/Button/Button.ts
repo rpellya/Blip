@@ -23,7 +23,7 @@ export class Button extends Block {
         });
     }
 
-    override render(): string {
+    render(): string {
         return template;
     }
 }

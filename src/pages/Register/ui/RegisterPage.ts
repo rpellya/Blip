@@ -77,7 +77,7 @@ export class RegisterPage extends Block {
         });
     }
 
-    override render() {
+    render() {
         return template;
     }
 }

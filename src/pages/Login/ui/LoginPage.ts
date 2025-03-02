@@ -37,7 +37,7 @@ export class LoginPage extends Block {
             }),
         });
     }
-    override render() {
+    render() {
         return template;
     }
 }

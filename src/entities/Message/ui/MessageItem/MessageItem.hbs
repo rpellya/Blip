@@ -1,8 +1,8 @@
-<div class='message-content-wrapper'>
+<div class='message-content-wrapper{{#if isCurrentUser}} current-user{{/if}}'>
     <div class='message-content'>
         <div class='content-inner'>
             <div class='text-content'>
-                {{text}}
+                <span class='text'>{{text}}</span>
                 <div class='MessageMeta'>
                     <span class='message-time'>
                         {{time}}

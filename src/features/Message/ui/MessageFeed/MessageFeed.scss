@@ -4,28 +4,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    .message-column-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        position: relative;
-        margin-bottom: 1.25rem;
-        padding: 0 32px;
-        column-gap: 10px;
-
-        .input-group {
-            width: 100%;
-
-            .message-input {
-                padding: 20px;
-                border-radius: 30px;
-                background-color: var(--input-bg-color);
-            }
-        }
-
-        .button {
-            border-radius: 50%;
-        }
-    }
+    padding: 0 20px;
 }

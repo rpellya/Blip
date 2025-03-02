@@ -30,7 +30,7 @@ export class Input extends Block {
         });
     }
 
-    override render() {
+    render() {
         return template;
     }
 }

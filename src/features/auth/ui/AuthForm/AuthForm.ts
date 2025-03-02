@@ -47,7 +47,7 @@ export class AuthForm extends Block {
         });
     }
 
-    override render() {
+    render() {
         return template;
     }
 }
