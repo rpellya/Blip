@@ -18,14 +18,7 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-
-            &:focus-visible {
-                border: none;
-            }
-
-            &::placeholder {
-                text-align: center;
-            }
+            outline: none;
         }
 
         &.outline_bottom {
@@ -35,10 +28,6 @@
             color: var(--secondary-color);
             text-shadow: 0 0 0 var(--primary-color);
             border-bottom: 1px solid var(--primary-color);
-
-            &:focus {
-                outline: none;
-            }
         }
     }
 }
