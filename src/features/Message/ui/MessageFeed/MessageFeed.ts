@@ -1,18 +1,13 @@
-import Handlebars from 'handlebars';
-import { Component } from 'shared/lib/Component';
 import template from './MessageFeed.hbs';
+import Block from 'shared/lib/Block';
 import './MessageFeed.scss';
 
-export class MessageFeed extends Component {
+export class MessageFeed extends Block {
     constructor() {
-        super('div', {});
+        super();
     }
 
     render() {
-        return Handlebars.compile(template)({});
-    }
-
-    protected events(): Array<[string, EventListener]> {
-        return [];
+        return template;
     }
 }

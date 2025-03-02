@@ -7,27 +7,14 @@
         margin-left: auto;
         margin-bottom: 24px;
 
-        .link {
-            color: var(--gray999);
+        .button {
+            color: var(--gray99);
         }
     }
 
     .header-searchBar {
         .searchBar {
-            height: 32px;
-            width: 100%;
-            padding: 10px;
             background-color: var(--input-bg-color);
-            border: none;
-            border-radius: 5px;
-
-            &:focus-visible {
-                border: none;
-            }
-
-            &::placeholder {
-                text-align: center;
-            }
         }
     }
 }

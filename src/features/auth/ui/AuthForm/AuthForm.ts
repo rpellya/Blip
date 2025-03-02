@@ -1,44 +1,53 @@
-import Handlebars from 'handlebars';
 import template from './AuthForm.hbs';
 import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
-import { Link } from 'shared/ui/Link/Link';
+import Block from 'shared/lib/Block';
 import './AuthForm.scss';
 
 interface AuthFormProps {
-    formId: string;
     title: string;
-    inputs: Input[];
-    button: Button;
-    link: Link;
+    formId: string;
+    inputs: {
+        type: string;
+        name: string;
+        label: string;
+        inputId: string;
+        required?: boolean;
+        placeholder?: string;
+    }[];
+    submitButton: {
+        text: string;
+        onClick: () => void;
+    };
+    signInButton: {
+        text: string;
+        onClick: () => void;
+    };
 }
 
-export class AuthForm {
-    private props: AuthFormProps;
-
+export class AuthForm extends Block {
     constructor(props: AuthFormProps) {
-        this.props = props;
-    }
-
-    render(): string {
-        return Handlebars.compile(template)({
-            ...this.props,
-            title: this.props.title,
-            inputs: this.props.inputs.map((input) => input.render()),
-            button: this.props.button.render(),
-            link: this.props.link.render(),
+        super({
+            ...props,
+            inputs: props.inputs.map(
+                (field) => new Input({ ...field, theme: 'outline_bottom' }),
+            ),
+            authButton: new Button({
+                text: props.submitButton.text,
+                type: 'submit',
+                theme: 'background',
+                onClick: props.submitButton.onClick,
+            }),
+            signInButton: new Button({
+                text: props.signInButton.text,
+                type: 'button',
+                theme: 'clear',
+                onClick: props.signInButton.onClick,
+            }),
         });
     }
 
-    mount(parent: HTMLElement): void {
-        this.props.inputs.forEach((input) => input.mount(parent));
-        this.props.button.mount(parent);
-        this.props.link.mount(parent);
-    }
-
-    destroy(): void {
-        this.props.inputs.forEach((input) => input.destroy());
-        this.props.button.destroy();
-        this.props.link.destroy();
+    override render() {
+        return template;
     }
 }
