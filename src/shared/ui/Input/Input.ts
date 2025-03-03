@@ -1,36 +1,31 @@
 import Block from 'shared/lib/Block';
 import template from './Input.hbs';
+import { InputField } from './InputField';
 import './Input.scss';
 
 export type InputVariant = 'default' | 'clear' | 'outline_bottom';
 
-interface InputProps {
-    type: string;
-    name: string;
+export interface InputProps {
     label?: string;
-    placeholder?: string;
-    theme?: InputVariant;
+    inputName?: string;
+    type?: string;
+    inputId?: string;
     required?: boolean;
+    theme?: InputVariant;
+    placeholder?: string;
     className?: string;
-    value?: string;
     error?: string;
     onBlur?: () => void;
 }
 
 export class Input extends Block {
-    constructor(props: Partial<InputProps>) {
+    constructor(props: InputProps) {
         super({
-            theme: 'default',
             ...props,
-            events: {
-                blur: () => {
-                    props?.onBlur?.();
-                },
-            },
+            InputField: new InputField({ ...props }),
         });
     }
-
-    render() {
+    protected render(): string {
         return template;
     }
 }

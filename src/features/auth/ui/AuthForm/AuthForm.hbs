@@ -4,15 +4,15 @@
     {{/if}}
 
     <form class='authForm-form' id={{formId}}>
-        {{{inputs}}}
-
-        <div class='authForm-actions'>
-            <div class='button button__submit'>
-                {{{authButton}}}
-            </div>
-            <div class='button button__link'>
-                {{{signInButton}}}
-            </div>
-        </div>
+        {{{AuthFields}}}
     </form>
+
+    <div class='authForm-actions'>
+        <div class='button button__submit'>
+            {{{authButton}}}
+        </div>
+        <div class='button button__link'>
+            {{{signInButton}}}
+        </div>
+    </div>
 </div>

@@ -1,18 +1,11 @@
-<div class="input-group{{#if error}} input-group__error{{/if}}">
-    {{#if label }}
-        <label class="input-label" for="{{name}}">{{label}}</label>
+<div class='input-group {{className}}'>
+    {{#if label}}
+        <label class='input-label' for='{{name}}'>{{label}}</label>
     {{/if}}
-
-    <input 
-        type="{{type}}"
-        id="{{name}}"
-        name="{{name}}"
-        class="input-field{{#if className}} {{className}}{{/if}}{{#if theme}} {{theme}}{{/if}}"
-        placeholder="{{placeholder}}"
-        {{#if required}}required{{/if}}
-    />
-    
-    {{#if helperText}}
-        <span class="input-helper">{{helperText}}</span>
+    {{{InputField}}}
+    {{#if error}}
+        <p class='error-text'>
+            {{error}}
+        </p>
     {{/if}}
 </div>

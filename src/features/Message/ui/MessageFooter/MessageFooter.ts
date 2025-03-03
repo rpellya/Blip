@@ -14,9 +14,10 @@ export class MessageFooter extends Block {
                 className: 'message-tack-button',
             }),
             Input: new Input({
+                inputId: 'message-field',
                 className: 'message-input',
                 placeholder: 'Сообщение',
-                name: 'message',
+                inputName: 'message',
             }),
             SendButton: new Button({
                 text: '->',

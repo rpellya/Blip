@@ -4,35 +4,34 @@ import template from './LoginPage.hbs';
 import { AppRoutes } from 'app/lib/Router';
 import './LoginPage.scss';
 
+const signInFields = [
+    {
+        label: 'Логин',
+        inputName: 'login',
+        inputId: 'login',
+    },
+    {
+        label: 'Пароль',
+        inputName: 'password',
+        inputId: 'password',
+        type: 'password',
+    },
+];
+
 export class LoginPage extends Block {
     constructor() {
         super({
             AuthForm: new AuthForm({
                 title: 'Blip',
                 formId: 'login-form',
-                inputs: [
-                    {
-                        type: 'text',
-                        name: 'login',
-                        label: 'Логин',
-                        inputId: 'login',
-                        required: true,
-                    },
-                    {
-                        type: 'password',
-                        name: 'password',
-                        label: 'Пароль',
-                        inputId: 'password',
-                        required: true,
-                    },
-                ],
+                AuthFields: signInFields,
                 submitButton: {
                     text: 'Войти',
                     onClick: () => this.RouterService.go(AppRoutes.CHATS),
                 },
                 signInButton: {
                     text: 'Нет аккаунта?',
-                    onClick: () => this.RouterService.go(AppRoutes.PROFILE),
+                    onClick: () => this.RouterService.go(AppRoutes.SIGN_UP),
                 },
             }),
         });

@@ -28,7 +28,8 @@ export class ChatHeader extends Block {
                 className: 'searchBar',
                 placeholder: props.placeholderSearch,
                 type: 'search',
-                name: 'search',
+                inputName: 'search',
+                label: '',
             }),
         });
     }
