@@ -8,8 +8,8 @@
         "dev": "vite",
         "start": "vite build && vite preview --port 3000",
         "build": "tsc && vite build",
-        "lint:ts": "eslint \"**/*.{ts,tsx}\"",
-        "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+        "lint:ts": "eslint \"**/*.ts\"",
+        "lint:ts:fix": "eslint \"**/*.ts\" --fix",
         "lint:scss": "npx stylelint \"**/*.scss\"",
         "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix"
     },
