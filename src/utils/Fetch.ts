@@ -26,7 +26,7 @@ function queryStringify(data: RequestOptions['data']) {
 
     return keys.reduce(
         (result, key, index) =>
-            `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`,
+            `${result}${encodeURIComponent(key)}=${encodeURIComponent(data[key])}${index < keys.length - 1 ? '&' : ''}`,
         '?',
     );
 }

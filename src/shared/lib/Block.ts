@@ -158,6 +158,12 @@ export default class Block {
     }
 
     private _render(): void {
+        const shouldRemoveEvents = Boolean(this._element);
+
+        if (shouldRemoveEvents) {
+            this._removeEvents();
+        }
+
         const propsAndStubs = { ...this.props };
         const _tmpId = Math.floor(100000 + Math.random() * 900000);
         Object.entries(this.children).forEach(([key, child]) => {

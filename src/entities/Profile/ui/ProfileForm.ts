@@ -4,16 +4,36 @@ import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'app/lib/Router';
 import { profileFormFields } from '../model/types/ProfileFormFields';
+import { validate } from 'utils/validate';
 import './ProfileForm.scss';
 
 export class ProfileForm extends Block {
     constructor() {
         super({
             inputs: profileFormFields.map(
-                (input) =>
+                (field, index) =>
                     new Input({
-                        ...input,
+                        ...field,
                         theme: 'outline_bottom',
+                        onBlur: () => {
+                            const input = document.getElementById(
+                                field.inputId,
+                            ) as HTMLInputElement;
+                            const errMessage = validate(
+                                field.inputName as string,
+                                input.value,
+                                true,
+                            );
+                            const fieldEl = this.lists.AuthFields[
+                                index
+                            ] as Input;
+
+                            if (errMessage) {
+                                fieldEl.setProps({ error: errMessage });
+                                return;
+                            }
+                            fieldEl.setProps({ error: undefined });
+                        },
                     }),
             ),
             logOutButton: new Button({

@@ -15,12 +15,13 @@ export class MessageFooter extends Block {
             }),
             Input: new Input({
                 inputId: 'message-field',
-                className: 'message-input',
+                className: 'message-from-input',
                 placeholder: 'Сообщение',
                 inputName: 'message',
             }),
             SendButton: new Button({
                 text: '->',
+                type: 'submit',
                 theme: 'background',
                 className: 'message-send-button',
                 onClick: () => {

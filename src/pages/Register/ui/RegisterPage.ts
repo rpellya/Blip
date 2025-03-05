@@ -39,11 +39,13 @@ const signUpFields = [
         label: 'Пароль',
         inputId: 'password',
         inputName: 'password',
+        type: 'password',
     },
     {
         label: 'Пароль (ещё раз)',
         inputName: 'password',
         inputId: 'password2',
+        type: 'password',
     },
 ];
 

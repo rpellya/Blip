@@ -51,7 +51,7 @@ export const validate = (
     }
 
     if (fieldName === 'first_name' || fieldName === 'second_name') {
-        const isValid = /^[А-ЯA-Z][а-яa-z-]*$/.test(value);
+        const isValid = /^[А-ЯЁA-Z][а-яёa-z-]*$/.test(value);
 
         return !isValid && errorMessage[fieldName];
     }

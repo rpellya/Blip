@@ -18,7 +18,10 @@ export class Button extends Block {
         super({
             ...props,
             events: {
-                click: (e: Event) => props?.onClick?.(e),
+                click: (e: Event) => {
+                    e.preventDefault();
+                    return props?.onClick?.(e);
+                },
             },
         });
     }

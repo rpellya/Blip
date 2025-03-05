@@ -7,10 +7,13 @@
     padding: 11px;
     border-top: 1px solid var(--border-color-ea);
 
-    .message-form-input {
+    .message-form {
+        display: flex;
+        column-gap: 10px;
         width: 100%;
 
         .input-group {
+            width: 100%;
             border-radius: 30px;
             background-color: var(--input-bg-color);
 
