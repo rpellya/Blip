@@ -1,8 +1,9 @@
 {
-    "name": "middle.messenger.praktikum.yandex",
+    "name": "blip",
     "private": true,
-    "version": "0.0.0",
+    "version": "0.1.0",
     "type": "module",
+    "author": "Pellya Roman",
     "scripts": {
         "dev": "vite",
         "start": "vite build && vite preview --port 3000",
