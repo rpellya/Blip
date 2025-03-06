@@ -1,30 +1,22 @@
+import Router, { AppRoutes } from './lib/Router';
 import { ChatPage } from 'pages/Chat';
-import { Router } from './lib/Router';
 import { LoginPage } from 'pages/Login';
 import { NotFoundPage } from 'pages/NotFound';
 import { RegisterPage } from 'pages/Register';
 import { ProfilePage } from 'pages/Profile';
 import { ServerErrorPage } from 'pages/ServerError';
 
-export class App {
-    private router: Router;
+export default class App {
+    public readonly router = Router;
 
-    constructor() {
-        this.router = Router.getInstance();
-        this.registerRoutes();
-    }
-
-    private registerRoutes(): void {
-        this.router.registerRoute('/', LoginPage);
-        this.router.registerRoute('/sign-in', LoginPage);
-        this.router.registerRoute('/sign-up', RegisterPage);
-        this.router.registerRoute('/chat', ChatPage);
-        this.router.registerRoute('/profile', ProfilePage);
-        this.router.registerRoute('/error-500', ServerErrorPage);
-        this.router.registerRoute('*', NotFoundPage);
-    }
-
-    public render(): void {
-        this.router.navigate(window.location.pathname);
+    public Render() {
+        this.router
+            .registerRoute(AppRoutes.AUTH, LoginPage)
+            ?.registerRoute(AppRoutes.SIGN_UP, RegisterPage)
+            ?.registerRoute(AppRoutes.PROFILE, ProfilePage)
+            ?.registerRoute(AppRoutes.CHATS, ChatPage)
+            ?.registerRoute(AppRoutes.SERVER_ERROR, ServerErrorPage)
+            ?.registerRoute(AppRoutes.NOT_FOUND, NotFoundPage)
+            ?.start();
     }
 }

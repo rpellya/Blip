@@ -1,121 +1,86 @@
-import Handlebars from 'handlebars';
-import { Component } from 'shared/lib/Component';
-import { Input } from 'shared/ui/Input/Input';
 import template from './ProfileForm.hbs';
-import './ProfileForm.scss';
+import Block from 'shared/lib/Block';
+import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
+import { AppRoutes } from 'app/lib/Router';
+import { profileFormFields } from '../model/types/ProfileFormFields';
+import { validate } from 'utils/validate';
+import './ProfileForm.scss';
 
 interface ProfileFormProps {
-    avatar: string;
-    email: string;
-    login: string;
-    first_name: string;
-    last_name: string;
-    display_name: string;
-    phone: string;
-    oldPassword: string;
-    newPassword: string;
+    formId: string;
 }
 
-export class ProfileForm extends Component<ProfileFormProps> {
-    constructor() {
-        super('form', {
-            avatar: 'https://avatars.githubusercontent.com/u/103450915?v=4',
-            email: 'user@example.com',
-            login: 'user123',
-            first_name: 'Иван',
-            last_name: 'Иванов',
-            display_name: 'Ванчоус',
-            phone: '+7 900 000-00-00',
-            oldPassword: '***',
-            newPassword: '***',
+export class ProfileForm extends Block {
+    constructor(props: ProfileFormProps) {
+        super({
+            ...props,
+            inputs: profileFormFields.map(
+                (field, index) =>
+                    new Input({
+                        ...field,
+                        theme: 'outline_bottom',
+                        onBlur: () => {
+                            const input = document.getElementById(
+                                field.inputId,
+                            ) as HTMLInputElement;
+                            const errMessage = validate(
+                                field.inputName,
+                                input.value as string,
+                            );
+                            const fieldEl = this.lists.profileFormFields[
+                                index
+                            ] as Input;
+
+                            if (errMessage) {
+                                fieldEl.setProps({ error: errMessage });
+
+                                return;
+                            }
+                            fieldEl.setProps({ error: undefined });
+                        },
+                    }),
+            ),
+            logOutButton: new Button({
+                text: 'Выйти',
+                theme: 'outline_red',
+                onClick: () => this.RouterService.go(AppRoutes.AUTH),
+            }),
+            saveButton: new Button({
+                text: 'Сохранить',
+                type: 'submit',
+                theme: 'background',
+                onClick: () => {
+                    let hasErrors = false;
+                    const form = document.getElementById(
+                        `${props.formId}`,
+                    ) as HTMLFormElement;
+                    const formData = new FormData(form);
+
+                    profileFormFields.forEach((field, index) => {
+                        const fieldValue = formData.get(field.inputName);
+                        const errMessage = validate(
+                            field.inputName,
+                            fieldValue as string,
+                            true,
+                        );
+                        if (errMessage) {
+                            hasErrors = true;
+                            const field = this.lists.inputs[index] as Input;
+                            field.setProps({ error: errMessage });
+                            return;
+                        }
+                        console.log(`${field.inputName}: ${fieldValue}`);
+                    });
+                    if (hasErrors) return;
+
+                    this.RouterService.go(AppRoutes.CHATS);
+                },
+            }),
         });
     }
 
     render(): string {
-        return Handlebars.compile(template)({
-            inputs: [
-                new Input({
-                    name: 'avatar',
-                    label: 'Аватар',
-                    value: this.props.avatar,
-                    type: 'input',
-                    placeholder: 'Ссылка',
-                }),
-                new Input({
-                    name: 'email',
-                    label: 'Почта',
-                    value: this.props.email,
-                    type: 'email',
-                    placeholder: 'pellya@ex.com',
-                }),
-                new Input({
-                    name: 'login',
-                    label: 'Логин',
-                    value: this.props.login,
-                    type: 'login',
-                    placeholder: 'pellya',
-                }),
-                new Input({
-                    name: 'first_name',
-                    label: 'Имя',
-                    value: this.props.first_name,
-                    type: 'name',
-                    placeholder: 'Роман',
-                }),
-                new Input({
-                    name: 'second_name',
-                    label: 'Фамилия',
-                    value: this.props.last_name,
-                    type: 'name',
-                    placeholder: 'Пелля',
-                }),
-                new Input({
-                    name: 'display_name',
-                    label: 'Отображаемое имя',
-                    value: this.props.display_name,
-                    type: 'name',
-                    placeholder: 'Pellya',
-                }),
-                new Input({
-                    name: 'phone',
-                    label: 'Телефон',
-                    value: this.props.phone,
-                    type: 'phone',
-                    placeholder: '+7 (909) 967 30 30',
-                }),
-                new Input({
-                    name: 'oldPassword',
-                    label: 'Старый пароль',
-                    value: this.props.oldPassword,
-                    type: 'phone',
-                    placeholder: '**********',
-                }),
-                new Input({
-                    name: 'newPassword',
-                    label: 'Старый пароль',
-                    value: this.props.newPassword,
-                    type: 'phone',
-                    placeholder: '**********',
-                }),
-            ].map((input) => input.render()),
-            buttons: [
-                new Button({
-                    text: 'Выйти',
-                    theme: 'outline_red',
-                    href: '/',
-                }),
-                new Button({
-                    text: 'Сохранить',
-                    type: 'submit',
-                    theme: 'background',
-                    href: '/chat',
-                }),
-            ].map((button) => button.render()),
-        });
-    }
-
-    protected events(): Array<[string, EventListener]> {
-        return [];
+        return template;
     }
 }

@@ -1,6 +1,5 @@
-import Handlebars from 'handlebars';
 import template from './ErrorPage.hbs';
-import { Component } from 'shared/lib/Component';
+import Block from 'shared/lib/Block';
 import './ErrorPage.scss';
 
 export interface ErrorPageProps {
@@ -9,22 +8,16 @@ export interface ErrorPageProps {
     textLink: string;
 }
 
-export class ErrorPage extends Component<ErrorPageProps> {
+export class ErrorPage extends Block {
     constructor(props: ErrorPageProps) {
-        super('div', {
+        super({
             code: props.code,
             message: props.message,
             textLink: props.textLink,
         });
     }
 
-    render = (): string => Handlebars.compile(template)(this.props);
-
-    protected events(): Array<[string, EventListener]> {
-        return [['click', this.handleClick]];
+    render(): string {
+        return template;
     }
-
-    private handleClick = (e: Event): void => {
-        e.preventDefault();
-    };
 }

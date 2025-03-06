@@ -1,57 +1,31 @@
-import Handlebars from 'handlebars';
+import Block from 'shared/lib/Block';
 import template from './Input.hbs';
-import { Component } from 'shared/lib/Component';
+import { InputField } from './InputField';
 import './Input.scss';
 
-interface InputProps {
-    type: string;
-    name: string;
+export type InputVariant = 'default' | 'clear' | 'outline_bottom';
+
+export interface InputProps {
     label?: string;
-    placeholder?: string;
+    inputName?: string;
+    type?: string;
+    inputId?: string;
     required?: boolean;
+    theme?: InputVariant;
+    placeholder?: string;
     className?: string;
-    value?: string;
     error?: string;
+    onBlur?: () => void;
 }
 
-export class Input extends Component<InputProps> {
-    protected events(): Array<[string, EventListener]> {
-        return [];
-    }
-
-    private inputElement: HTMLInputElement | null = null;
-
+export class Input extends Block {
     constructor(props: InputProps) {
-        super('div', props);
+        super({
+            ...props,
+            InputField: new InputField({ ...props }),
+        });
     }
-
-    setProps(props: Partial<InputProps>): void {
-        this.props = { ...this.props, ...props };
-        this.render();
-    }
-
-    render(): string {
-        return Handlebars.compile(template)(this.props);
-    }
-
-    mount(parent: HTMLElement): void {
-        this.inputElement = parent.querySelector(
-            `input[name="${this.props.name}"]`,
-        );
-        if (this.inputElement) {
-            this.inputElement.addEventListener('input', this.handleInput);
-        }
-    }
-
-    private handleInput = (e: Event): void => {
-        const target = e.target as HTMLInputElement;
-        this.setProps({ value: target.value });
-    };
-
-    destroy(): void {
-        if (this.inputElement) {
-            this.inputElement.removeEventListener('input', this.handleInput);
-            this.inputElement = null;
-        }
+    protected render(): string {
+        return template;
     }
 }

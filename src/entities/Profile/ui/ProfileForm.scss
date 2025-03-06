@@ -11,25 +11,26 @@
         text-align: center;
         padding: 25px;
     }
+
     &__fields {
         display: flex;
         flex-direction: column;
         row-gap: 10px;
 
         .input-group {
-            display: flex;
-            flex-direction: row;
-            border-bottom: 1px solid var(--primary-color);
-            .input-label {
-                opacity: 0.7;
-            }
+            text-align: right;
+            min-height: 36px;
 
-            .input-field {
-                text-align: right;
-                border-bottom: none;
+            .input-group-container {
+                display: flex;
+
+                .input-field {
+                    text-align: right;
+                }
             }
         }
     }
+
     &__actions {
         display: flex;
         justify-content: space-between;
