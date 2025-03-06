@@ -1,44 +1,27 @@
-import Handlebars from 'handlebars';
-import { Component } from 'shared/lib/Component';
 import template from './ChatCard.hbs';
 import { Chat } from '../../model/types/schema';
+import Block from 'shared/lib/Block';
 import './ChatCard.scss';
 
 export interface ChatCardProps {
     chat: Chat;
     isActive?: boolean;
     className?: string;
+    onBlur?: () => void;
 }
 
-export class ChatCard extends Component<ChatCardProps> {
+export class ChatCard extends Block {
     constructor(props: ChatCardProps) {
-        const { chat, isActive } = props;
+        const { chat, isActive, onBlur } = props;
 
-        super('div', {
-            ...props,
+        super({
             ...chat,
             className: isActive ? 'chat-card chat-card--active' : 'chat-card',
+            events: { blur: () => onBlur?.() },
         });
     }
 
-    render = (): string => Handlebars.compile(template)(this.props);
-
-    getChatId = (): string => this.props.chat.id;
-
-    setActive(isActive: boolean): void {
-        this.setProps({
-            ...this.props,
-            isActive,
-        });
+    render(): string {
+        return template;
     }
-
-    protected events(): Array<[string, EventListener]> {
-        return [['click', this.handleClick]];
-    }
-
-    private handleClick = (e: Event): void => {
-        e.preventDefault();
-
-        console.log('Selected chat:', this.props.chat.id);
-    };
 }

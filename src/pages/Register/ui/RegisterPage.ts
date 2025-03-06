@@ -1,94 +1,74 @@
 import { AuthForm } from 'features/auth/ui/AuthForm/AuthForm';
-import { Input } from 'shared/ui/Input/Input';
-import { Button } from 'shared/ui/Button/Button';
-import { Link } from 'shared/ui/Link/Link';
-import { PageStrategy } from 'shared/lib/model/PageStrategies';
-import { AuthLayout } from 'features/auth';
+import Block from 'shared/lib/Block';
+import template from './RegisterPage.hbs';
+import { AppRoutes } from 'app/lib/Router';
 
-export class RegisterPage implements PageStrategy {
-    private layout: AuthLayout;
-    private authForm: AuthForm;
+const signUpFields = [
+    {
+        type: 'email',
+        label: 'Почта',
+        inputId: 'email',
+        inputName: 'email',
+        placeholder: 'example@ex.com',
+    },
+    {
+        label: 'Логин',
+        inputId: 'login',
+        inputName: 'login',
+        placeholder: 'example_2004',
+    },
+    {
+        label: 'Имя',
+        inputId: 'first_name',
+        inputName: 'first_name',
+        placeholder: 'Иван',
+    },
+    {
+        label: 'Фамилия',
+        inputId: 'second_name',
+        inputName: 'second_name',
+        placeholder: 'Иванов',
+    },
+    {
+        label: 'Телефон',
+        inputId: 'phone',
+        inputName: 'phone',
+        placeholder: '+7 (952) 752 52 52',
+    },
+    {
+        label: 'Пароль',
+        inputId: 'password',
+        inputName: 'password',
+        type: 'password',
+    },
+    {
+        label: 'Пароль (ещё раз)',
+        inputName: 'password',
+        inputId: 'password2',
+        type: 'password',
+    },
+];
 
+export class RegisterPage extends Block {
     constructor() {
-        this.layout = new AuthLayout({ type: 'register' });
-
-        this.authForm = new AuthForm({
-            formId: 'register-form',
-            title: 'Регистрация',
-            inputs: [
-                new Input({
-                    type: 'email',
-                    name: 'email',
-                    label: 'Почта',
-                    placeholder: 'pellya@ex.com',
-                    required: true,
-                }),
-                new Input({
-                    type: 'text',
-                    name: 'login',
-                    label: 'Логин',
-                    placeholder: 'ivan_2010',
-                    required: true,
-                }),
-                new Input({
-                    type: 'text',
-                    name: 'first_name',
-                    label: 'Имя',
-                    placeholder: 'Иван',
-                    required: true,
-                }),
-                new Input({
-                    type: 'text',
-                    name: 'second_name',
-                    label: 'Фамилия',
-                    placeholder: 'Иванов',
-                    required: true,
-                }),
-                new Input({
-                    type: 'tel',
-                    name: 'phone',
-                    label: 'Телефон',
-                    placeholder: '+7 (909) 967 30 30',
-                    required: true,
-                }),
-                new Input({
-                    type: 'password',
-                    name: 'password',
-                    label: 'Пароль',
-                    required: true,
-                }),
-                new Input({
-                    type: 'newPassword',
-                    name: 'newPassword',
-                    label: 'Пароль (ещё раз)',
-                    required: true,
-                }),
-            ],
-            button: new Button({
-                type: 'submit',
-                text: 'Зарегистрироваться',
-                theme: 'background',
-            }),
-            link: new Link({
-                text: 'Войти',
-                href: '/sign-in',
-                className: 'auth-link',
+        super({
+            AuthForm: new AuthForm({
+                formId: 'register-form',
+                title: 'Регистрация',
+                AuthFields: signUpFields,
+                submitButton: {
+                    text: 'Зарегистрироваться',
+                    onClick: () => this.RouterService.go(AppRoutes.CHATS),
+                },
+                signInButton: {
+                    text: 'Войти',
+                    onClick: () => this.RouterService.go(AppRoutes.AUTH),
+                },
             }),
         });
-
-        this.layout.addContent(this.authForm.render());
     }
 
-    render(appElement: HTMLElement): void {
-        appElement.innerHTML = this.layout.render();
-        this.authForm.mount(appElement);
-    }
-
-    mount(appElement: HTMLElement): void {
-        this.authForm.mount(appElement);
-    }
-
-    destroy(): void {
-        this.authForm.destroy();
+    render() {
+        return template;
     }
 }

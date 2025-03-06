@@ -1,0 +1,23 @@
+import Block from 'shared/lib/Block';
+import template from './InputField.hbs';
+import { InputProps } from './Input';
+
+export class InputField extends Block {
+    constructor(props: Partial<InputProps>) {
+        console.log(props);
+        super({
+            ...props,
+            theme: props.theme || 'default',
+            type: props.type || 'text',
+            events: {
+                blur: () => {
+                    props?.onBlur?.();
+                },
+            },
+        });
+    }
+
+    render(): string {
+        return template;
+    }
+}

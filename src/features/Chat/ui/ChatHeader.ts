@@ -1,42 +1,40 @@
-import Handlebars from 'handlebars';
+import Block from 'shared/lib/Block';
 import template from './ChatHeader.hbs';
-import { Link } from 'shared/ui/Link/Link';
+import { AppRoutes } from 'app/lib/Router';
+import { Button } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
 import './ChatHeader.scss';
 
 interface ChatHeaderProps {
-    textLink: string;
-    link: Link;
+    link: {
+        text: string;
+        onClick: () => void;
+    };
     placeholderSearch?: string;
     className?: string;
 }
 
-export class ChatHeader {
-    private props: ChatHeaderProps;
-
+export class ChatHeader extends Block {
     constructor(props: ChatHeaderProps) {
-        this.props = props;
-    }
-
-    render(): string {
-        return Handlebars.compile(template)({
-            ...this.props,
-            link: this.props.link.render(),
-            // title: this.props.title,
-            // inputs: this.props.inputs.map((input) => input.render()),
-            // button: this.props.button.render(),
-            // link: this.props.link.render(),
+        super({
+            ...props,
+            link: new Button({
+                ...props,
+                theme: 'clear',
+                text: props.link.text,
+                onClick: () => this.RouterService.go(AppRoutes.PROFILE),
+            }),
+            searchBar: new Input({
+                className: 'searchBar',
+                placeholder: props.placeholderSearch,
+                type: 'search',
+                inputName: 'search',
+                label: '',
+            }),
         });
     }
 
-    mount(parent: HTMLElement): void {
-        this.props.link.mount(parent);
-        // this.props.inputs.forEach((input) => input.mount(parent));
-        // this.props.button.mount(parent);
-    }
-
-    destroy(): void {
-        this.props.link.destroy();
-        // this.props.inputs.forEach((input) => input.destroy());
-        // this.props.button.destroy();
+    render(): string {
+        return template;
     }
 }

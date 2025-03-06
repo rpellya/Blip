@@ -1,18 +1,20 @@
-import Handlebars from 'handlebars';
-import { Component } from 'shared/lib/Component';
 import template from './MessageFeed.hbs';
+import Block from 'shared/lib/Block';
+import { MessageList } from '../MessageList/MessageList';
+import { MessageHeader } from '../MessageHeader/MessageHeader';
+import { MessageFooter } from '../MessageFooter/MessageFooter';
 import './MessageFeed.scss';
 
-export class MessageFeed extends Component {
+export class MessageFeed extends Block {
     constructor() {
-        super('div', {});
+        super({
+            MessageHeader: new MessageHeader(),
+            MessageList: new MessageList(),
+            MessageFooter: new MessageFooter(),
+        });
     }
 
     render() {
-        return Handlebars.compile(template)({});
-    }
-
-    protected events(): Array<[string, EventListener]> {
-        return [];
+        return template;
     }
 }

@@ -1,0 +1,29 @@
+.message-column-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    column-gap: 10px;
+    padding: 11px;
+    border-top: 1px solid var(--border-color-ea);
+
+    .message-form {
+        display: flex;
+        column-gap: 10px;
+        width: 100%;
+
+        .input-group {
+            width: 100%;
+            border-radius: 30px;
+            background-color: var(--input-bg-color);
+
+            .input-field {
+                border-radius: 30px;
+            }
+        }
+    }
+
+    .button {
+        border-radius: 50%;
+    }
+}

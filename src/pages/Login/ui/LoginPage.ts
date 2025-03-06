@@ -1,56 +1,42 @@
-import { PageStrategy } from 'shared/lib/model/PageStrategies';
-import { AuthLayout } from 'features/auth';
 import { AuthForm } from 'features/auth';
-import { Input } from 'shared/ui/Input/Input';
-import { Button } from 'shared/ui/Button/Button';
-import { Link } from 'shared/ui/Link/Link';
+import Block from 'shared/lib/Block';
+import template from './LoginPage.hbs';
+import { AppRoutes } from 'app/lib/Router';
+import './LoginPage.scss';
 
-export class LoginPage implements PageStrategy {
-    private layout: AuthLayout;
-    private authForm: AuthForm;
+const signInFields = [
+    {
+        label: 'Логин',
+        inputName: 'login',
+        inputId: 'login',
+    },
+    {
+        label: 'Пароль',
+        inputName: 'password',
+        inputId: 'password',
+        type: 'password',
+    },
+];
 
+export class LoginPage extends Block {
     constructor() {
-        this.layout = new AuthLayout({ type: 'login' });
-
-        this.authForm = new AuthForm({
-            title: 'Blip',
-            inputs: [
-                new Input({
-                    type: 'text',
-                    name: 'login',
-                    label: 'Логин',
-                    required: true,
-                }),
-                new Input({
-                    type: 'password',
-                    name: 'password',
-                    label: 'Пароль',
-                    required: true,
-                }),
-            ],
-            button: new Button({
-                type: 'submit',
-                text: 'Авторизоваться',
-                theme: 'background',
-                href: '/chat',
+        super({
+            AuthForm: new AuthForm({
+                title: 'Blip',
+                formId: 'login-form',
+                AuthFields: signInFields,
+                submitButton: {
+                    text: 'Войти',
+                    onClick: () => this.RouterService.go(AppRoutes.CHATS),
+                },
+                signInButton: {
+                    text: 'Нет аккаунта?',
+                    onClick: () => this.RouterService.go(AppRoutes.SIGN_UP),
+                },
             }),
-            link: new Link({ text: 'Нет аккаунта?', href: '/sign-up' }),
-            formId: 'login-form',
         });
-
-        this.layout.addContent(this.authForm.render());
     }
-
-    render(appElement: HTMLElement): void {
-        appElement.innerHTML = this.layout.render();
-        this.authForm.mount(appElement);
-    }
-
-    mount(appElement: HTMLElement): void {
-        this.authForm.mount(appElement);
-    }
-
-    destroy(): void {
-        this.authForm.destroy();
+    render() {
+        return template;
     }
 }

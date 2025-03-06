@@ -1,28 +1,18 @@
-import { PageStrategy } from 'shared/lib/model/PageStrategies';
 import { ProfileForm } from 'entities/Profile';
 import template from './ProfilePage.hbs';
-import Handlebars from 'handlebars';
+import Block from 'shared/lib/Block';
 import './ProfilePage.scss';
 
-export class ProfilePage implements PageStrategy {
-    private profileForm: ProfileForm;
-
+export class ProfilePage extends Block {
     constructor() {
-        this.profileForm = new ProfileForm();
-    }
-
-    render(appElement: HTMLElement): void {
-        const html = Handlebars.compile(template)({
-            profileForm: this.profileForm.render(),
+        super({
+            profileForm: new ProfileForm({
+                formId: 'profileForm',
+            }),
         });
-        appElement.innerHTML = html;
     }
 
-    mount(appElement: HTMLElement): void {
-        this.profileForm.mount(appElement);
-    }
-
-    destroy(): void {
-        this.profileForm.destroy();
+    render(): string {
+        return template;
     }
 }

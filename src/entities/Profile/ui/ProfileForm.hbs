@@ -4,19 +4,16 @@
             <img alt='{{avatar}}' src='{{avatar}}' />
         </div>
     {{/if}}
-    <form class='profile-form__form'>
+    <form class='profile-form__form' id='{{formId}}'>
         <h1 class='profile-form__title'>Профиль</h1>
 
         <div class='profile-form__fields'>
-            {{#each inputs}}
-                {{{this}}}
-            {{/each}}
+            {{{inputs}}}
         </div>
 
         <div class='profile-form__actions'>
-            {{#each buttons}}
-                {{{this}}}
-            {{/each}}
+            {{{logOutButton}}}
+            {{{saveButton}}}
         </div>
     </form>
 </div>
