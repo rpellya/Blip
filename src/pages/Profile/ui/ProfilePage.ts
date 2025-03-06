@@ -5,7 +5,11 @@ import './ProfilePage.scss';
 
 export class ProfilePage extends Block {
     constructor() {
-        super({ profileForm: new ProfileForm() });
+        super({
+            profileForm: new ProfileForm({
+                formId: 'profileForm',
+            }),
+        });
     }
 
     render(): string {

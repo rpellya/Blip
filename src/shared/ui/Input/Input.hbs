@@ -1,8 +1,10 @@
 <div class='input-group {{className}}'>
-    {{#if label}}
-        <label class='input-label' for='{{name}}'>{{label}}</label>
-    {{/if}}
-    {{{InputField}}}
+    <div class='input-group-container {{theme}}'>
+        {{#if label}}
+            <label class='input-label' for='{{name}}'>{{label}}</label>
+        {{/if}}
+        {{{InputField}}}
+    </div>
     {{#if error}}
         <p class='error-text'>
             {{error}}

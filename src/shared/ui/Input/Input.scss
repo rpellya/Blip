@@ -2,23 +2,28 @@
     display: flex;
     flex-direction: column;
 
-    .input-label {
-        text-align: left;
-        max-width: 150px;
-        width: 100%;
-    }
-
-    .input-field {
-        background: transparent;
-
-        &.default {
-            height: 32px;
-            border: none;
+    .input-group-container {
+        .input-label {
+            text-align: left;
+            max-width: 150px;
             width: 100%;
-            padding: 10px;
-            border-radius: 5px;
+        }
+
+        .input-field {
+            background: transparent;
+            border: none;
             outline: none;
-            background-color: var(--input-bg-color);
+            width: 100%;
+
+            &.default {
+                height: 32px;
+                border: none;
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                outline: none;
+                background-color: var(--input-bg-color);
+            }
         }
 
         &.outline_bottom {
