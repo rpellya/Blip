@@ -14,7 +14,7 @@ export default class App {
             .registerRoute(AppRoutes.AUTH, LoginPage)
             ?.registerRoute(AppRoutes.SIGN_UP, RegisterPage)
             ?.registerRoute(AppRoutes.PROFILE, ProfilePage)
-            ?.registerRoute(AppRoutes.CHATS, ChatPage)
+            ?.registerRoute(AppRoutes.MESSANGER, ChatPage)
             ?.registerRoute(AppRoutes.SERVER_ERROR, ServerErrorPage)
             ?.registerRoute(AppRoutes.NOT_FOUND, NotFoundPage)
             ?.start();

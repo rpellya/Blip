@@ -1,6 +1,6 @@
 type RequestOptions = {
     timeout: number;
-    method: Methods;
+    method: `${Methods}`;
     headers: Record<string, string>;
     data: Document | XMLHttpRequestBodyInit | null;
 };

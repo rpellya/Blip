@@ -74,7 +74,7 @@ export class ProfileForm extends Block {
                     });
                     if (hasErrors) return;
 
-                    this.RouterService.go(AppRoutes.CHATS);
+                    this.RouterService.go(AppRoutes.MESSANGER);
                 },
             }),
         });
