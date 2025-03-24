@@ -1,6 +1,5 @@
 import template from './MessengerPage.hbs';
 import { MessageFeed } from 'features/Message';
-import { ChatList } from 'widgets/Chat';
 import { ChatHeader } from 'features/Chat';
 import Block from 'shared/lib/Block';
 import { AppRoutes } from 'app/lib/Router';
@@ -9,6 +8,9 @@ import { isSameDate } from 'utils/isSameDate';
 import { getDateString, getTimeString } from 'utils/getDateString';
 import { MessageItem } from 'entities/Message';
 import './MessengerPage.scss';
+import { Button } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
+import { ChatCard } from 'widgets/Chat/ui/ChatCard/ChatCard';
 
 interface ChatData {
     id: number;
@@ -48,6 +50,15 @@ interface MessageData {
     };
 }
 
+interface SearchUserData {
+    id: number;
+    first_name: string;
+    second_name: string;
+    display_name: null;
+    login: string;
+    avatar: string;
+}
+
 export class MessengerPage extends Block {
     protected chats: ChatData[] = [];
     protected socket: WebSocket | null = null;
@@ -84,7 +95,6 @@ export class MessengerPage extends Block {
     constructor() {
         super({
             messageFeed: new MessageFeed(),
-            chatList: new ChatList(),
             chatHeader: new ChatHeader({
                 link: {
                     text: 'Профиль  >',
@@ -92,6 +102,97 @@ export class MessengerPage extends Block {
                 },
                 placeholderSearch: 'поиск',
             }),
+            ButtonToProfile: new Button({
+                text: 'Профиль',
+                className: 'chats-button-to-profile',
+                // buttonIconSrc: ArrowRightIcon,
+                onClick: () => this.RouterService.go(AppRoutes.PROFILE),
+            }),
+            UserAvatar: 'aaa',
+            //   UserAvatar: new UserAvatar({
+            //     className: "chat-avatar",
+            //     iconSrc: PictureFillIcon,
+            //   }),
+            AttachButton: 'AttachButton',
+            SendButton: new Button({
+                // buttonIconSrc: ArrowRightPrimaryIcon,
+                // alt: "Отправить",
+                text: 'Отправить',
+                className: 'chat-message-send-button',
+                onClick: () => {
+                    const form = document.getElementById(
+                        'messageForm',
+                    ) as HTMLFormElement;
+                    const formData = new FormData(form);
+
+                    if (this.socket) {
+                        this.socket.send(
+                            JSON.stringify({
+                                content: formData.get('message'),
+                                type: 'message',
+                            }),
+                        );
+                        this.messengerService.GetChatMessages(this.socket);
+                    }
+                },
+            }),
+            //   checkedIconSrc: CheckedIcon,
+            formId: 'messageForm',
+        });
+
+        setTimeout(async () => {
+            const result = await this.messengerService.GetChats();
+
+            if (result.status === 200) {
+                const chats: ChatData[] = JSON.parse(result.response);
+
+                if (chats.length) {
+                    this.setProps({
+                        chatList: chats.map(
+                            (chat) =>
+                                new ChatCard({
+                                    ...chat,
+                                    lastMessage: chat?.last_message?.content,
+                                    time: getDateString(
+                                        chat?.last_message?.time,
+                                    ),
+                                    newMessagesCount: chat?.unread_count,
+                                    // avatarIconSrc: PictureFillIcon,
+                                    avatarImageSrc: chat?.avatar,
+                                    onClick: async () => {
+                                        const socket =
+                                            await this.messengerService.ConnectToChat(
+                                                chat.id,
+                                            );
+                                        if (socket) {
+                                            this.socket = socket;
+                                            socket.addEventListener(
+                                                'message',
+                                                (event) => {
+                                                    const data = JSON.parse(
+                                                        event.data,
+                                                    );
+                                                    if (Array.isArray(data)) {
+                                                        this.setChatData(
+                                                            data,
+                                                            chat.title,
+                                                        );
+                                                    } else if (
+                                                        data.type !== 'pong'
+                                                    ) {
+                                                        this.messengerService.GetChatMessages(
+                                                            socket,
+                                                        );
+                                                    }
+                                                },
+                                            );
+                                        }
+                                    },
+                                }),
+                        ),
+                    });
+                }
+            }
         });
     }
 

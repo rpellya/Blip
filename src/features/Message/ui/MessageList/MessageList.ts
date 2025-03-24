@@ -8,7 +8,7 @@ export class MessageList extends Block {
     constructor() {
         super({
             Messages: mockMessages.map(
-                (message) => new MessageItem({ message }),
+                (message) => new MessageItem({ ...message }),
             ),
         });
     }

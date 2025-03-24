@@ -1,12 +1,18 @@
-<div class='{{className}}' data-chat-id='{{id}}'>
+<div class='chat-card' data-chat-id='{{id}}'>
+
     <div class='chat-card__header'>
-        <h3 class='chat-card__title'>{{title}}</h3>
-        <time class='chat-card__time'>{{time}}</time>
+        <div class='chat-card-avatar'>
+            {{UserAvatar}}
+        </div>
+        <div class='chat-card__info-container'>
+            <h3 class='chat-card__title'>{{title}}</h3>
+            <time class='chat-card__time'>{{time}}</time>
+        </div>
     </div>
     <div class='chat-card__content'>
         <p class='chat-card__message'>{{lastMessage}}</p>
-        {{#if unreadCount}}
-            <div class='chat-card__badge'>{{unreadCount}}</div>
+        {{#if unread_count}}
+            <div class='chat-card__badge'>{{unread_count}}</div>
         {{/if}}
     </div>
 </div>

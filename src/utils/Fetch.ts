@@ -85,6 +85,8 @@ export class Fetch {
                 isGet && !!data ? `${url}${queryStringify(data)}` : url,
             );
 
+            xhr.withCredentials = true; // Включение кроссдоменных запросов (чтобы могли получать куки)
+
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
             });
