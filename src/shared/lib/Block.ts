@@ -99,15 +99,15 @@ export default class Block {
         this.eventBus().emit(Events.FLOW_CDM);
     }
 
-    private _componentDidUpdate(/*oldProps: BlockProps, newProps: BlockProps*/): void {
-        const response = this.componentDidUpdate(/*oldProps, newProps*/);
+    private _componentDidUpdate(): void {
+        const response = this.componentDidUpdate();
         if (!response) {
             return;
         }
         this._render();
     }
 
-    protected componentDidUpdate(/*oldProps: BlockProps, newProps: BlockProps*/): boolean {
+    protected componentDidUpdate(): boolean {
         return true;
     }
 

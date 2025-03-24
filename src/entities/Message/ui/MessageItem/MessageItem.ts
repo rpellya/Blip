@@ -3,12 +3,8 @@ import template from './MessageItem.hbs';
 import { Message } from '../../model/types/MessageSchema';
 import './MessageItem.scss';
 
-interface MessageItemProps {
-    message: Message;
-}
-
 export class MessageItem extends Block {
-    constructor({ message }: MessageItemProps) {
+    constructor({ ...message }: Message) {
         super({ ...message });
     }
 

@@ -1,5 +1,5 @@
 import Router, { AppRoutes } from './lib/Router';
-import { ChatPage } from 'pages/Chat';
+import { MessengerPage } from 'pages/Messenger';
 import { LoginPage } from 'pages/Login';
 import { NotFoundPage } from 'pages/NotFound';
 import { RegisterPage } from 'pages/Register';
@@ -14,7 +14,7 @@ export default class App {
             .registerRoute(AppRoutes.AUTH, LoginPage)
             ?.registerRoute(AppRoutes.SIGN_UP, RegisterPage)
             ?.registerRoute(AppRoutes.PROFILE, ProfilePage)
-            ?.registerRoute(AppRoutes.MESSANGER, ChatPage)
+            ?.registerRoute(AppRoutes.MESSANGER, MessengerPage)
             ?.registerRoute(AppRoutes.SERVER_ERROR, ServerErrorPage)
             ?.registerRoute(AppRoutes.NOT_FOUND, NotFoundPage)
             ?.start();
