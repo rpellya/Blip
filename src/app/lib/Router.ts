@@ -7,6 +7,7 @@ export const enum AppRoutes {
     SERVER_ERROR = '/error-500',
     MESSANGER = '/messenger',
     SETTINGS = '/settings',
+    PASSWORD_SETTINGS = '/settings-password',
 
     // last
     NOT_FOUND = '*',

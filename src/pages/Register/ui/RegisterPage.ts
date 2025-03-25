@@ -61,7 +61,7 @@ export class RegisterPage extends Block {
                     text: 'Зарегистрироваться',
                     onClick: () => this.RouterService.go(AppRoutes.MESSANGER),
                 },
-                signInButton: {
+                signUpButton: {
                     text: 'Войти',
                     onClick: () => this.RouterService.go(AppRoutes.AUTH),
                 },

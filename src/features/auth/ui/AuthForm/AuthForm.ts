@@ -24,7 +24,7 @@ interface AuthFormProps {
         text: string;
         onClick: () => void;
     };
-    signInButton: {
+    signUpButton: {
         text: string;
         onClick: () => void;
     };
@@ -62,7 +62,7 @@ export class AuthForm extends Block {
                         },
                     }),
             ),
-            authButton: new Button({
+            SubmitButton: new Button({
                 text: props.submitButton.text,
                 theme: 'background',
                 onClick: async () => {
@@ -118,9 +118,9 @@ export class AuthForm extends Block {
                     }
                 },
             }),
-            signInButton: new Button({
-                ...props.signInButton,
-                text: props.signInButton.text,
+            SignUpButton: new Button({
+                ...props.signUpButton,
+                text: props.signUpButton.text,
                 type: 'button',
                 theme: 'clear',
             }),

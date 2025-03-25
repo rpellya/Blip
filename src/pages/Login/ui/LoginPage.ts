@@ -30,7 +30,7 @@ export class LoginPage extends Block {
                     text: 'Войти',
                     onClick: () => this.RouterService.go(AppRoutes.MESSANGER),
                 },
-                signInButton: {
+                signUpButton: {
                     text: 'Нет аккаунта?',
                     onClick: () => this.RouterService.go(AppRoutes.SIGN_UP),
                 },

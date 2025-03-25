@@ -1,7 +1,7 @@
 <section class='error-page'>
     <h1 class='error-page__code'>{{code}}</h1>
     <p class='error-page__message'>{{message}}</p>
-    <a href='/' class='link'>
-        {{textLink}}
-    </a>
+    {{#if NavLink}}
+        {{{NavLink}}}
+    {{/if}}
 </section>
