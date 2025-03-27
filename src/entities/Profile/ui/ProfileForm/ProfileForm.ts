@@ -3,7 +3,7 @@ import Block from 'shared/lib/Block';
 import { Button } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'app/lib/Router';
 import { UserAvatar } from 'entities/UserAvatar';
-import PictureFillIcon from 'assets/icons/PictureFill.svg';
+import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import { ProfileService } from '../../model/service/profileService';
 import { ProfileInfoItem } from '../ProfileInfoItem/ProfileInfoItem';
 import './ProfileForm.scss';
@@ -54,10 +54,7 @@ export class ProfileForm extends Block {
     constructor(props: ProfileFormProps) {
         super({
             ...props,
-            UserAvatar: new UserAvatar({
-                iconSrc: PictureFillIcon,
-                className: 'avatar-wrapper',
-            }),
+            UserAvatar: new UserAvatar({ iconSrc: pictureFillIcon }),
             EditProfileButton: new Button({
                 text: 'Изменить данные',
                 theme: 'clear',

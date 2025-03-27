@@ -38,10 +38,12 @@ export class EditForm extends Block {
     constructor(props: EditFormProps) {
         super({
             ...props,
+            title:
+                props.formType === 'profile'
+                    ? 'Редактирование профиля'
+                    : 'Изменение пароля',
             UserAvatar: new UserAvatar({
-                className: 'edit-profile-avatar-wrapper',
                 iconSrc: props.avatarIconSrc,
-                imageSrc: props.avatarImageSrc,
             }),
             ProfileEditItems: props.ProfileEditItems.map(
                 (field, idx) =>

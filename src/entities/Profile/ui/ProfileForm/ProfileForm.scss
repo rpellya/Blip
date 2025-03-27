@@ -5,10 +5,18 @@
         align-items: center;
         justify-content: center;
 
-        .avatar-wrapper {
-            width: 130px;
-            height: 130px;
+        .profile-avatar-wrapper {
             margin-bottom: 20px;
+
+            .user-avatar {
+                width: 130px;
+                height: 130px;
+
+                .avatar-container > img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
         }
 
         .profile-info__title {
@@ -26,6 +34,7 @@
 
             .edit-button-wrapper {
                 height: 34px;
+                margin-bottom: 6px;
                 border-bottom: 1px solid var(--border-color-ea);
             }
 

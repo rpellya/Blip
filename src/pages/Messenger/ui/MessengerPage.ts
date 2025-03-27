@@ -84,8 +84,8 @@ export class MessengerPage extends Block {
 
     constructor() {
         super({
-            messageFeed: new MessageFeed(),
-            chatHeader: new ChatHeader({
+            MessageFeed: new MessageFeed(),
+            ChatHeader: new ChatHeader({
                 link: {
                     text: 'Профиль  >',
                     onClick: () => this.RouterService.go(AppRoutes.PROFILE),
@@ -97,7 +97,6 @@ export class MessengerPage extends Block {
                 className: 'chats-button-to-profile',
                 onClick: () => this.RouterService.go(AppRoutes.PROFILE),
             }),
-            AttachButton: 'AttachButton',
             SendButton: new Button({
                 text: 'Отправить',
                 className: 'chat-message-send-button',
@@ -129,7 +128,7 @@ export class MessengerPage extends Block {
 
                 if (chats.length) {
                     this.setProps({
-                        chatList: chats.map(
+                        ChatList: chats.map(
                             (chat) =>
                                 new ChatCard({
                                     ...chat,

@@ -5,4 +5,11 @@
     width: 100%;
     margin-bottom: 1px;
     border-bottom: 1px solid var(--border-color-ea);
+
+    .user-avatar {
+        .avatar-container {
+            height: 40px;
+            width: 40px;
+        }
+    }
 }

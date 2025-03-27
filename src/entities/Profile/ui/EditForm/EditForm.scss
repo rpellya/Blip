@@ -6,10 +6,21 @@
     align-items: center;
     justify-content: center;
 
-    .edit-profile-avatar-wrapper {
-        width: 130px;
-        height: 130px;
-        margin-bottom: 80px;
+    .edit-form__avatar-wrapper {
+        .user-avatar {
+            margin-bottom: 60px;
+            width: 130px;
+            height: 130px;
+
+            .avatar-container > img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+
+    .edit-form__title {
+        margin-bottom: 60px;
     }
 
     .edit-form__form {

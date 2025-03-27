@@ -1,5 +1,5 @@
 import { EditPasswordService } from '../../model/service/profileEditPassword';
-import PictureFillIcon from 'assets/icons/PictureFill.svg';
+import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import Block from 'shared/lib/Block';
 import template from './ProfileEditPassword.hbs';
 import { EditForm, FormType } from 'entities/Profile';
@@ -33,7 +33,7 @@ export class EditPasswordPage extends Block {
         super({
             EditForm: new EditForm({
                 formType: 'password',
-                avatarIconSrc: PictureFillIcon,
+                avatarIconSrc: pictureFillIcon,
                 cancelButtonLabel: 'Отмена',
                 ProfileEditItems: editPassFields,
                 formId: 'formEditPassword',

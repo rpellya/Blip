@@ -1,17 +1,17 @@
 import Block from 'shared/lib/Block';
 import template from './MessageHeader.hbs';
+import { UserAvatar } from 'entities/UserAvatar';
+import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import './MessageHeader.scss';
 
 export class MessageHeader extends Block {
     constructor() {
         super({
-            userAvatar: 'Avatar',
-            userName: 'Ai',
-            menu: 'Menu',
+            UserAvatar: new UserAvatar({ iconSrc: pictureFillIcon }),
         });
     }
 
-    protected render(): string {
+    render(): string {
         return template;
     }
 }
