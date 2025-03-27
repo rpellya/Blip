@@ -1,5 +1,6 @@
-.chat-card {
-    padding: 12px;
+.chat-card-wrapper {
+    display: flex;
+    padding: 12px 10px;
     transition: background 0.2s ease;
     cursor: pointer;
 
@@ -15,47 +16,65 @@
         background: var(--skyblue);
     }
 
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 4px;
-    }
+    .chat-card {
+        &__content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
 
-    &__title {
-        margin: 0;
-        font-size: 14px;
-        font-weight: 500;
-    }
+            .chat-card__message {
+                margin: 0;
+                font-size: 13px;
+                color: var(--gray99);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
 
-    &__time {
-        font-size: 12px;
-        color: var(--gray75);
-    }
-
-    &__content {
-        display: flex;
-        justify-content: space-between;
-
-        .chat-card__message {
-            margin: 0;
-            font-size: 13px;
-            color: var(--gray99);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            .chat-card__badge {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 20px;
+                height: 20px;
+                background: var(--primary-color);
+                color: var(--white);
+                border-radius: 50%;
+                font-size: 12px;
+                user-select: none;
+            }
         }
 
-        .chat-card__badge {
+        &__info {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            color: var(--white);
-            border-radius: 50%;
+            justify-content: space-between;
+        }
+
+        &__title {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        &__time {
             font-size: 12px;
-            user-select: none;
+            color: var(--gray75);
+        }
+
+        // justify-content: space-between;
+    }
+
+    .chat-card-avatar {
+        margin-right: 10px;
+
+        .chat-avatar {
+            height: 37px;
+            width: 37px;
+
+            & img {
+                height: 15px;
+                width: 15px;
+            }
         }
     }
 }

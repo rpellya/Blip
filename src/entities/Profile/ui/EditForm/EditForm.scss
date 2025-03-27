@@ -1,0 +1,29 @@
+.edit-form-container {
+    height: 100%;
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .edit-profile-avatar-wrapper {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 80px;
+    }
+
+    .edit-form__form {
+        width: 100%;
+    }
+
+    .submit-button {
+        width: 280px;
+        margin-top: 80px;
+    }
+
+    .cancel-button {
+        width: 280px;
+        color: var(--error-color-ff);
+        margin-top: 20px;
+    }
+}

@@ -7,10 +7,9 @@ import { MessengerService } from '../model/services/messenger';
 import { isSameDate } from 'utils/isSameDate';
 import { getDateString, getTimeString } from 'utils/getDateString';
 import { MessageItem } from 'entities/Message';
-import './MessengerPage.scss';
 import { Button } from 'shared/ui/Button/Button';
-import { Input } from 'shared/ui/Input/Input';
-import { ChatCard } from 'widgets/Chat/ui/ChatCard/ChatCard';
+import { ChatCard } from 'widgets/Chat';
+import './MessengerPage.scss';
 
 interface ChatData {
     id: number;
@@ -48,15 +47,6 @@ interface MessageData {
         content_size: number;
         upload_date: string;
     };
-}
-
-interface SearchUserData {
-    id: number;
-    first_name: string;
-    second_name: string;
-    display_name: null;
-    login: string;
-    avatar: string;
 }
 
 export class MessengerPage extends Block {
@@ -105,18 +95,10 @@ export class MessengerPage extends Block {
             ButtonToProfile: new Button({
                 text: 'Профиль',
                 className: 'chats-button-to-profile',
-                // buttonIconSrc: ArrowRightIcon,
                 onClick: () => this.RouterService.go(AppRoutes.PROFILE),
             }),
-            UserAvatar: 'aaa',
-            //   UserAvatar: new UserAvatar({
-            //     className: "chat-avatar",
-            //     iconSrc: PictureFillIcon,
-            //   }),
             AttachButton: 'AttachButton',
             SendButton: new Button({
-                // buttonIconSrc: ArrowRightPrimaryIcon,
-                // alt: "Отправить",
                 text: 'Отправить',
                 className: 'chat-message-send-button',
                 onClick: () => {
@@ -136,7 +118,6 @@ export class MessengerPage extends Block {
                     }
                 },
             }),
-            //   checkedIconSrc: CheckedIcon,
             formId: 'messageForm',
         });
 
@@ -157,8 +138,6 @@ export class MessengerPage extends Block {
                                         chat?.last_message?.time,
                                     ),
                                     newMessagesCount: chat?.unread_count,
-                                    // avatarIconSrc: PictureFillIcon,
-                                    avatarImageSrc: chat?.avatar,
                                     onClick: async () => {
                                         const socket =
                                             await this.messengerService.ConnectToChat(

@@ -1,0 +1,21 @@
+.profile-edit-item-container {
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 1px solid var(--border-color-ea);
+
+    .input-group {
+        .input-group-container {
+            height: 34px;
+            display: flex;
+            flex-direction: row;
+
+            .input-label {
+                max-width: 200px;
+            }
+
+            .input-field {
+                text-align: right;
+            }
+        }
+    }
+}
