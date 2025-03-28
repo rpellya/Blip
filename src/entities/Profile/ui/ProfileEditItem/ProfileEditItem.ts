@@ -8,15 +8,21 @@ interface ProfileEditItemProps {
     value?: string;
     inputName?: string;
     type: string;
+    error?: string;
     onBlur?: () => void;
 }
 
 export class ProfileEditItem extends Block {
     constructor(props: ProfileEditItemProps) {
+        console.log('ProfileEditItem', props);
         super({
             ...props,
             value: props.value,
-            fields: new Input({ ...props, theme: 'clear' }),
+            fields: new Input({
+                ...props,
+                placeholder: props.value,
+                theme: 'clear',
+            }),
         });
     }
 

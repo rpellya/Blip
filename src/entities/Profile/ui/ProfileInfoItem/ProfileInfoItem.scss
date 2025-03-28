@@ -1,12 +1,15 @@
 .profile-info-item-container {
     width: 100%;
     height: 34px;
-    border-bottom: 1px solid var(--border-color-ea);
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
 
-.item-text {
-    color: var(--color-secondary);
+    &:not(:last-child) {
+        border-bottom: 1px solid var(--border-color-ea);
+    }
+
+    .item-text {
+        color: var(--gray99);
+    }
 }

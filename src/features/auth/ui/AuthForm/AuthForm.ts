@@ -73,7 +73,7 @@ export class AuthForm extends Block {
                     ) as HTMLFormElement;
                     const formData = new FormData(form);
 
-                    props.AuthFields.forEach(async (field, index) => {
+                    props.AuthFields.map(async (field, index) => {
                         const fieldValue = formData.get(field.inputName);
                         const errMessage = validate(
                             field.inputName,

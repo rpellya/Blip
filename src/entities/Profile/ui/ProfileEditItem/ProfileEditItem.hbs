@@ -1,3 +1,8 @@
 <div class='profile-edit-item-container'>
-    {{{fields}}}
+    <div class='profile-edit-item'>
+        {{{fields}}}
+    </div>
+    {{#if error}}
+        <p class='profile-edit__error-text'>{{error}}</p>
+    {{/if}}
 </div>
