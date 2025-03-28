@@ -2,7 +2,7 @@ import { FormType } from 'entities/Profile';
 import { Fetch } from 'utils/Fetch';
 import { API_URL, getEndPoint } from 'utils/getEndPoint';
 
-export class EditPasswordService {
+export class ProfileEditPasswordService {
     protected readonly requestService = new Fetch();
 
     public async PutUser(formType: FormType, formData: Record<string, string>) {

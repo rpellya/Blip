@@ -20,8 +20,6 @@ interface ChatCardProps {
 
 export class ChatCard extends Block {
     constructor(props: ChatCardProps) {
-        console.log(props);
-
         super({
             ...props,
             time: props.last_message?.time,

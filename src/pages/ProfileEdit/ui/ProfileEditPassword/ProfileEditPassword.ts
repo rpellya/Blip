@@ -1,4 +1,4 @@
-import { EditPasswordService } from '../../model/service/profileEditPassword';
+import { ProfileEditPasswordService } from '../../model/service/profileEditPassword';
 import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import Block from 'shared/lib/Block';
 import template from './ProfileEditPassword.hbs';
@@ -28,7 +28,8 @@ export const editPassFields = [
 ];
 
 export class ProfileEditPasswordPage extends Block {
-    protected readonly editFormService = new EditPasswordService();
+    protected readonly editFormService = new ProfileEditPasswordService();
+
     constructor() {
         super({
             EditForm: new EditForm({

@@ -25,7 +25,7 @@ interface EditFormProps {
     }[];
     SubmitButton: {
         label: string;
-        onSubmit?: (
+        onSubmit: (
             formType: FormType,
             userData: UserFormData,
         ) => Promise<number>;
@@ -85,7 +85,7 @@ export class EditForm extends Block {
                     ) as HTMLFormElement;
                     const formData = new FormData(form);
 
-                    props.ProfileEditItems.forEach((field, idx) => {
+                    props.ProfileEditItems.map((field, idx) => {
                         const fieldValue = formData.get(field.inputName);
                         const errMessage = validate(
                             field.inputName,
@@ -93,6 +93,8 @@ export class EditForm extends Block {
                         );
                         if (errMessage) {
                             hasErrors = true;
+                            console.error('hasError');
+
                             const field = this.lists.ProfileEditItems[
                                 idx
                             ] as Input;
@@ -106,7 +108,7 @@ export class EditForm extends Block {
 
                     if (hasErrors) return;
 
-                    const result = await props.SubmitButton.onSubmit?.(
+                    const result = await props.SubmitButton.onSubmit(
                         props.formType,
                         userData,
                     );
