@@ -3,6 +3,7 @@ import { ProfileEditInfoService } from '../../model/service/profileEditInfo';
 import template from './ProfileEditInfo.hbs';
 import { EditForm, FormType } from 'entities/Profile';
 import pictureFillIcon from 'assets/icons/PictureFill.svg';
+import { AppRoutes } from 'app/lib/Router';
 
 const getProfileEditItems = (data: Record<string, string>) => [
     {
@@ -85,6 +86,8 @@ export class ProfileEditInfoPage extends Block {
                         },
                     }),
                 });
+            } else if (result.status === 401) {
+                this.RouterService.go(AppRoutes.AUTH);
             }
         });
     }

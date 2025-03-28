@@ -170,6 +170,8 @@ export class MessengerPage extends Block {
                         ),
                     });
                 }
+            } else if (result.status === 401) {
+                this.RouterService.go(AppRoutes.AUTH);
             }
         });
     }

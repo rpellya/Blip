@@ -3,6 +3,7 @@ import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import Block from 'shared/lib/Block';
 import template from './ProfileEditPassword.hbs';
 import { EditForm, FormType } from 'entities/Profile';
+import { AppRoutes } from 'app/lib/Router';
 
 type UserFormData = Record<string, string>;
 
@@ -44,12 +45,12 @@ export class ProfileEditPasswordPage extends Block {
                         formType: FormType,
                         userData: UserFormData,
                     ) => {
-                        const result = await this.editFormService.PutUser(
+                        const statusCode = await this.editFormService.PutUser(
                             formType,
                             userData,
                         );
 
-                        return result;
+                        return statusCode;
                     },
                 },
             }),
