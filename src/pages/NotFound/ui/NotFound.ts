@@ -1,8 +1,8 @@
 import template from './NotFound.hbs';
 import { ErrorPage } from 'widgets/ErrorPage';
 import Block from 'shared/lib/Block';
-import './NotFoundPage.scss';
 import { AppRoutes } from 'app/lib/Router';
+import './NotFoundPage.scss';
 
 export class NotFoundPage extends Block {
     constructor() {

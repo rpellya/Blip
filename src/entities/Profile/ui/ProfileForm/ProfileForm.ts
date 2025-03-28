@@ -6,19 +6,11 @@ import { UserAvatar } from 'entities/UserAvatar';
 import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import { ProfileService } from '../../model/service/profileService';
 import { ProfileInfoItem } from '../ProfileInfoItem/ProfileInfoItem';
+import { UserData } from '../../model/types/userDataSchema';
 import './ProfileForm.scss';
 
 interface ProfileFormProps {
     formId: string;
-}
-
-interface UserData {
-    email: string;
-    login: string;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    phone: string;
 }
 
 const getProfileInfoItems = (data: UserData) => [
