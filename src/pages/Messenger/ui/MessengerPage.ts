@@ -9,52 +9,179 @@ import { getDateString, getTimeString } from 'utils/getDateString';
 import { MessageItem } from 'entities/Message';
 import { Button } from 'shared/ui/Button/Button';
 import { ChatCard } from 'widgets/Chat';
-import { ChatData } from '../model/types/chatDataSchema';
-import { MessageData } from '../model/types/messageDataSchema';
+import pictureFillIcon from 'assets/icons/PictureFill.svg';
+import { ChatData, MessageData, SearchUserData } from '../model/types/types';
+import { SearchInput } from 'shared/ui/SearchInput/SearchInput';
 import './MessengerPage.scss';
 
 export class MessengerPage extends Block {
     protected chats: ChatData[] = [];
     protected socket: WebSocket | null = null;
     protected selectedChat: MessageData[] = [];
+    protected currentChatId: number | null = null;
 
     protected readonly messengerService = new MessengerService();
     protected readonly currentUserId = localStorage.getItem('id');
 
-    protected setChatData(data: MessageData[], title: string) {
-        this.selectedChat = data.reverse();
-        this.setProps({
-            selectedChatTitle: title,
-            Messages: this.selectedChat.map((message, idx) => {
-                let dateString = '';
-                if (
-                    idx === 0 ||
-                    !isSameDate(message?.time, this.selectedChat[idx - 1]?.time)
-                ) {
-                    dateString = getDateString(message.time, true);
-                }
+    protected async setChatData(title: string, chatId: number) {
+        this.currentChatId = chatId;
+        const socket = await this.messengerService.ConnectToChat(chatId);
+        if (socket) {
+            this.socket = socket;
+            socket.addEventListener('message', (event) => {
+                const data = JSON.parse(event.data);
 
-                return new MessageItem({
-                    text: message.content,
-                    time: getTimeString(new Date(message.time)),
-                    isChecked: message.is_read,
-                    isCurrentUser: message.user_id == this.currentUserId,
-                    date: dateString && dateString,
+                if (Array.isArray(data)) {
+                    this.selectedChat = data.reverse();
+                    this.setProps({
+                        selectedChatTitle: title,
+                        Messages: this.selectedChat.map((message, idx) => {
+                            let dateString = '';
+                            if (
+                                idx === 0 ||
+                                !isSameDate(
+                                    message?.time,
+                                    this.selectedChat[idx - 1]?.time,
+                                )
+                            ) {
+                                dateString = getDateString(message.time, true);
+                            }
+
+                            return new MessageItem({
+                                text: message.content,
+                                time: getTimeString(new Date(message.time)),
+                                isChecked: message.is_read,
+                                isCurrentUser:
+                                    message.user_id == this.currentUserId,
+                                date: dateString && dateString,
+                            });
+                        }),
+                        hasMessages: !!this.selectedChat.length,
+                    });
+                } else if (data.type !== 'pong') {
+                    this.messengerService.GetChatMessages(socket);
+                }
+            });
+        }
+    }
+
+    protected async updateChats() {
+        const result = await this.messengerService.GetChats();
+
+        if (result.status === 200) {
+            const chats: ChatData[] = JSON.parse(result.response);
+
+            if (chats.length) {
+                this.setProps({
+                    ChatList: chats.map(
+                        (chat) =>
+                            new ChatCard({
+                                ...chat,
+                                lastMessage: chat?.last_message?.content,
+                                time: getDateString(chat?.last_message?.time),
+                                newMessagesCount: chat?.unread_count,
+                                onClick: () =>
+                                    this.setChatData(chat.title, chat.id),
+                            }),
+                    ),
                 });
-            }),
-            hasMessages: !!this.selectedChat.length,
-        });
+            }
+        } else if (result.status === 401) {
+            this.RouterService.go(AppRoutes.AUTH);
+        }
     }
 
     constructor() {
         super({
-            MessageFeed: new MessageFeed(),
+            // MessageFeed: new MessageFeed(),
             ChatHeader: new ChatHeader({
                 link: {
                     text: 'Профиль  >',
                     onClick: () => this.RouterService.go(AppRoutes.PROFILE),
                 },
                 placeholderSearch: 'поиск',
+                SearchInput: new SearchInput({
+                    className: 'chats-search-input',
+                    onInput: async (login) => {
+                        if (login.length) {
+                            if (this.props.Messages) {
+                                this.deleteLists('Messages');
+                            }
+                            const result =
+                                await this.messengerService.GetUsersByLogin(
+                                    login,
+                                );
+
+                            if (!this.chats.length) {
+                                const chatsResult =
+                                    await this.messengerService.GetChats();
+
+                                if (chatsResult.status === 200) {
+                                    this.chats = JSON.parse(
+                                        chatsResult.response,
+                                    );
+                                    console.log('1');
+                                }
+                                console.log(JSON.parse(chatsResult.response));
+                            }
+
+                            if (result.status === 200) {
+                                const data: SearchUserData[] = JSON.parse(
+                                    result.response,
+                                );
+
+                                this.deleteLists('ChatList');
+
+                                this.setProps({
+                                    SearchChatList: data.map(
+                                        (user) =>
+                                            new ChatCard({
+                                                title: user.login,
+                                                lastMessage: `${user.first_name} ${user.second_name}`,
+                                                time: '',
+                                                newMessagesCount: 0,
+                                                avatarIconSrc: pictureFillIcon,
+                                                avatarImageSrc: user.avatar,
+                                                onClick: async () => {
+                                                    const result =
+                                                        await this.messengerService.PostChat(
+                                                            user.login,
+                                                            user.id,
+                                                        );
+
+                                                    if (result) {
+                                                        this.deleteLists(
+                                                            'Users',
+                                                        );
+                                                        this.updateChats();
+                                                        this.setProps({
+                                                            selectedChatTitle:
+                                                                user.login,
+                                                            hasMessages: false,
+                                                            isSearchUsers:
+                                                                false,
+                                                        });
+
+                                                        const chatId =
+                                                            JSON.parse(
+                                                                result,
+                                                            ).id;
+                                                        this.setChatData(
+                                                            user.login,
+                                                            chatId,
+                                                        );
+                                                    }
+                                                },
+                                            }),
+                                    ),
+                                });
+                            }
+                            return;
+                        }
+                        this.deleteLists('SearchChatList');
+                        this.updateChats();
+                    },
+                }),
             }),
             ButtonToProfile: new Button({
                 text: 'Профиль',
@@ -84,60 +211,7 @@ export class MessengerPage extends Block {
             formId: 'messageForm',
         });
 
-        setTimeout(async () => {
-            const result = await this.messengerService.GetChats();
-
-            if (result.status === 200) {
-                const chats: ChatData[] = JSON.parse(result.response);
-
-                if (chats.length) {
-                    this.setProps({
-                        ChatList: chats.map(
-                            (chat) =>
-                                new ChatCard({
-                                    ...chat,
-                                    lastMessage: chat?.last_message?.content,
-                                    time: getDateString(
-                                        chat?.last_message?.time,
-                                    ),
-                                    newMessagesCount: chat?.unread_count,
-                                    onClick: async () => {
-                                        const socket =
-                                            await this.messengerService.ConnectToChat(
-                                                chat.id,
-                                            );
-                                        if (socket) {
-                                            this.socket = socket;
-                                            socket.addEventListener(
-                                                'message',
-                                                (event) => {
-                                                    const data = JSON.parse(
-                                                        event.data,
-                                                    );
-                                                    if (Array.isArray(data)) {
-                                                        this.setChatData(
-                                                            data,
-                                                            chat.title,
-                                                        );
-                                                    } else if (
-                                                        data.type !== 'pong'
-                                                    ) {
-                                                        this.messengerService.GetChatMessages(
-                                                            socket,
-                                                        );
-                                                    }
-                                                },
-                                            );
-                                        }
-                                    },
-                                }),
-                        ),
-                    });
-                }
-            } else if (result.status === 401) {
-                this.RouterService.go(AppRoutes.AUTH);
-            }
-        });
+        setTimeout(async () => this.updateChats());
     }
 
     render(): string {
