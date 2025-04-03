@@ -1,19 +1,14 @@
 import template from './ChatCard.hbs';
 import Block from 'shared/lib/Block';
 import { UserAvatar } from 'entities/UserAvatar';
-import pictureFillIcon from 'assets/icons/PictureFill.svg';
 import './ChatCard.scss';
 
 interface ChatCardProps {
-    title: string;
-    lastMessage?: string;
-    last_message?: {
-        time: string;
-        content: string;
-    };
+    userName: string;
+    message: string;
     time: string;
-    newMessagesCount?: number;
-    avatarIconSrc?: string;
+    newMessagesCount: number;
+    avatarIconSrc: string;
     avatarImageSrc?: string;
     onClick: () => Promise<void>;
 }
@@ -22,10 +17,10 @@ export class ChatCard extends Block {
     constructor(props: ChatCardProps) {
         super({
             ...props,
-            time: props.last_message?.time,
             UserAvatar: new UserAvatar({
                 className: 'chat-avatar',
-                iconSrc: pictureFillIcon,
+                iconSrc: props.avatarIconSrc,
+                imageSrc: props.avatarImageSrc,
             }),
             events: { click: props.onClick },
         });

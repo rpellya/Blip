@@ -5,7 +5,9 @@ import './UserAvatar.scss';
 
 interface UserAvatarProps {
     iconSrc: string;
+    imageSrc?: string;
     className?: string;
+    onClick?: () => void;
 }
 
 export class UserAvatar extends Block {
@@ -16,6 +18,9 @@ export class UserAvatar extends Block {
                 imageSrc: props.iconSrc,
                 className: props.className ?? '',
             }),
+            events: {
+                click: () => props.onClick?.(),
+            },
         });
     }
 

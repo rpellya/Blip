@@ -48,3 +48,12 @@
         color: var(--red-light);
     }
 }
+
+.icon {
+    display: flex;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    column-gap: 4px;
+}

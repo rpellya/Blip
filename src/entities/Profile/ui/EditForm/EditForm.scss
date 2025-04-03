@@ -9,12 +9,15 @@
     .edit-form__avatar-wrapper {
         .user-avatar {
             margin-bottom: 60px;
-            width: 130px;
-            height: 130px;
 
-            .avatar-container > img {
-                width: 40px;
-                height: 40px;
+            .avatar-container {
+                width: 130px;
+                height: 130px;
+
+                > img {
+                    width: 40px;
+                    height: 40px;
+                }
             }
         }
     }

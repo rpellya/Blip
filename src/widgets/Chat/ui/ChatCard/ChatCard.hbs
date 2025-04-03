@@ -6,13 +6,13 @@
     </div>
     <div class='chat-card__content'>
         <div class='chat-card__info'>
-            <h3 class='chat-card__title'>{{title}}</h3>
+            <h3 class='chat-card__title'>{{userName}}</h3>
             <time class='chat-card__time'>{{time}}</time>
         </div>
         <div class='chat-card__content'>
-            <p class='chat-card__message'>{{lastMessage}}</p>
-            {{#if unread_count}}
-                <div class='chat-card__badge'>{{unread_count}}</div>
+            <p class='chat-card__message'>{{message}}</p>
+            {{#if newMessagesCount}}
+                <div class='chat-card__badge'>{{newMessagesCount}}</div>
             {{/if}}
         </div>
     </div>

@@ -2,12 +2,20 @@ import template from './Button.hbs';
 import Block from '../../lib/Block';
 import './Button.scss';
 
-export type ButtonVariant = 'clear' | 'outline' | 'outline_red' | 'background';
+export type ButtonVariant =
+    | 'clear'
+    | 'outline'
+    | 'outline_red'
+    | 'background'
+    | 'icon';
+
 interface ButtonProps {
-    text: string;
+    text?: string;
     type?: 'button' | 'submit' | 'reset';
     theme?: ButtonVariant;
     className?: string;
+    iconSrc?: string;
+    iconAlt?: string;
     onClick?: (e: Event) => void;
 }
 

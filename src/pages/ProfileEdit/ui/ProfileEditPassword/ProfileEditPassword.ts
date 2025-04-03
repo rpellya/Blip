@@ -1,5 +1,5 @@
 import { ProfileEditPasswordService } from '../../model/service/profileEditPassword';
-import pictureFillIcon from 'assets/icons/PictureFill.svg';
+import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import Block from 'shared/lib/Block';
 import template from './ProfileEditPassword.hbs';
 import { EditForm, FormType } from 'entities/Profile';

@@ -44,3 +44,13 @@ export interface MessageData {
         upload_date: string;
     };
 }
+
+export interface ChatUser {
+    avatar: string | null;
+    display_name: string;
+    first_name: string;
+    id: number;
+    login: string;
+    role: 'regular';
+    second_name: string;
+}

@@ -9,12 +9,14 @@
             margin-bottom: 20px;
 
             .user-avatar {
-                width: 130px;
-                height: 130px;
+                .avatar-container {
+                    width: 130px;
+                    height: 130px;
 
-                .avatar-container > img {
-                    width: 40px;
-                    height: 40px;
+                    > img {
+                        width: 40px;
+                        height: 40px;
+                    }
                 }
             }
         }
@@ -41,7 +43,7 @@
             .logout-button {
                 .button {
                     height: 34px;
-                    color: #f00;
+                    color: var(--error-color-ff);
                 }
             }
         }

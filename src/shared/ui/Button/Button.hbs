@@ -1,5 +1,6 @@
 <button class='button {{className}} {{theme}}' type='{{type}}'>
-    {{#if text}}
-        {{{text}}}
+    {{#if text}}<p>{{{text}}}</p>{{/if}}
+    {{#if iconSrc}}
+        <img class='button-icon' src={{iconSrc}} alt={{iconAlt}} />
     {{/if}}
 </button>

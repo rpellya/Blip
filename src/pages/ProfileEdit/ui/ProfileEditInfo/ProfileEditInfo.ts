@@ -2,7 +2,7 @@ import Block from 'shared/lib/Block';
 import { ProfileEditInfoService } from '../../model/service/profileEditInfo';
 import template from './ProfileEditInfo.hbs';
 import { EditForm, FormType } from 'entities/Profile';
-import pictureFillIcon from 'assets/icons/PictureFill.svg';
+import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import { AppRoutes } from 'app/lib/Router';
 
 const getProfileEditItems = (data: Record<string, string>) => [

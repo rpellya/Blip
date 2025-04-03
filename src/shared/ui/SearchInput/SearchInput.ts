@@ -1,8 +1,9 @@
 import Block from 'shared/lib/Block';
 import template from './SearchInput.hbs';
+import './SearchInput.scss';
 
 interface InputProps {
-    className: string;
+    className?: string;
     onInput: (login: string) => Promise<void>;
 }
 

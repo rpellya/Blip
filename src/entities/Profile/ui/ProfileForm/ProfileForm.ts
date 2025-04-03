@@ -3,7 +3,7 @@ import Block from 'shared/lib/Block';
 import { Button } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'app/lib/Router';
 import { UserAvatar } from 'entities/UserAvatar';
-import pictureFillIcon from 'assets/icons/PictureFill.svg';
+import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import { ProfileService } from '../../model/service/profileService';
 import { ProfileInfoItem } from '../ProfileInfoItem/ProfileInfoItem';
 import { UserData } from '../../model/types/userDataSchema';

@@ -1,0 +1,18 @@
+.chat-user-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .chat-user-info-container {
+        display: flex;
+        align-items: center;
+
+        .chat-user-info-login {
+            margin-left: 22px;
+        }
+    }
+
+    .chat-user-delete-button {
+        color: var(--error-color-ff);
+    }
+}

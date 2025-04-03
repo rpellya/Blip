@@ -1,34 +1,76 @@
-<section class='chat-page'>
-    <div class='chat-page__sidebar'>
-        <header class='chat-page__header'>
-            {{{ChatHeader}}}
-        </header>
-        <div class='chat-page__list'>
+<section class='messenger-page-container'>
+    <div class='messenger-page-sidebar'>
+        <div class='sidebar-header'>
+            <div class='sidebar-header__buttons'>
+                {{{AddNewChatButton}}}
+                {{{ButtonToProfile}}}
+                {{{ChatHeader}}}
+            </div>
+            {{{SearchInput}}}
+        </div>
+
+        <div class='sidebar-page__chats_list'>
             {{{ChatList}}}
-            {{{SearchChatList}}}
         </div>
     </div>
 
-    <div class='chat-page__chat'>
-        {{!-- {{{MessageFeed}}} --}}
+    <div class='messenger-page-chat'>
+        {{#if selectedChatTitle}}
+            <div class='chat-user-header'>
+                <div class='chat-header-container__info'>
+                    <div class='chat-header-info__avatar'>
+                        {{{ChatAvatar}}}
+                    </div>
+                    <p class='chat-header__user-name'>
+                        {{selectedChatTitle}}
+                    </p>
+                </div>
+                <div class='chat-header__buttons'>
+                    {{{UsersButton}}}
+                    {{{DeleteChatButton}}}
+                </div>
+            </div>
 
-        <div class='chat-history-container'>
-            {{#if hasMessages}}
-                {{{Messages}}}
-            {{else}}
-                <p class='chat-empty-placeholder'>
-                    Здесь пока нет сообщений...
-                </p>
-            {{/if}}
-        </div>
+            <div class='chat-history-container'>
+                {{#if hasMessages}}
+                    {{{Messages}}}
+                {{else}}
+                    <p class='chat-empty-placeholder'>
+                        Здесь пока нет сообщений...
+                    </p>
+                {{/if}}
+            </div>
 
-        <div class='chat-message-input-wrapper'>
-            {{{AttachButton}}}
-
+            <div class='chat-footer-container'>
+                {{{TackButton}}}
+                <form id={{formId}} class='message-form'>
+                    {{{InputMessage}}}
+                </form>
+                {{{SendButton}}}
+            </div>
+        {{else}}
             <p class='chat-not-selected-placeholder'>
                 Выберите чат, чтобы отправить сообщение
             </p>
-        </div>
-
+        {{/if}}
     </div>
+
+    {{#if isModalOpen}}
+        <div class='modal-wrapper'>
+            <div class='modal'>
+                {{{ModalCloseButton}}}
+                <h3 class='modal-title'>
+                    {{modalTitle}}
+                </h3>
+
+                {{#if ModalContent}}
+                    {{{ModalContent}}}
+                {{/if}}
+
+                {{#if ModalSubmitButton}}
+                    {{{ModalSubmitButton}}}
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
 </section>
