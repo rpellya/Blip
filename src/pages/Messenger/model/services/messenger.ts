@@ -113,7 +113,7 @@ export class MessengerService {
 
             if (result.status === 200) {
                 const token = JSON.parse(result.response).token;
-                const userId = localStorage.getItem('id');
+                const userId = sessionStorage.getItem('id');
                 const socket = new WebSocket(
                     getEndPoint(WS_API_URL, `chats/${userId}/${chatId}`, token),
                 );

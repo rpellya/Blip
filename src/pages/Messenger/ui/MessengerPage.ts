@@ -3,7 +3,7 @@ import Block from 'shared/lib/Block';
 import { AppRoutes } from 'app/lib/Router';
 import { MessengerService } from '../model/services/messenger';
 import { isSameDate } from 'utils/isSameDate';
-import { getDateString } from 'utils/getDateString';
+import { getDateString, getTimeString } from 'utils/getDateString';
 import { Button } from 'shared/ui/Button/Button';
 import { ChatCard, ChatUser } from 'widgets/Chat';
 import addIcon from 'assets/icons/add.svg';
@@ -23,6 +23,8 @@ import { SearchInput } from 'shared/ui/SearchInput/SearchInput';
 import { UserAvatar } from 'entities/UserAvatar';
 import { Input } from 'shared/ui/Input/Input';
 import { getAvatarSrc } from 'utils/getEndPoint';
+import { MessageItem } from 'entities/Message';
+import { ProfileService } from 'entities/Profile';
 import './MessengerPage.scss';
 
 export class MessengerPage extends Block {
@@ -32,7 +34,7 @@ export class MessengerPage extends Block {
     protected currentChatId: number | null = null;
 
     protected readonly messengerService = new MessengerService();
-    protected readonly currentUserId = localStorage.getItem('id');
+    protected readonly profileService = new ProfileService();
 
     protected closeModal = () => {
         this.setProps({
@@ -42,7 +44,6 @@ export class MessengerPage extends Block {
     };
 
     protected setChats(chats: ChatData[]) {
-        this.deleteLists('Chats');
         if (chats.length) {
             this.setProps({
                 ChatList: chats.map(
@@ -106,14 +107,15 @@ export class MessengerPage extends Block {
                                     );
                                 }
 
-                                // return new MessageItem({
-                                //     text: message.content,
-                                //     time: getTimeString(new Date(message.time)),
-                                //     isChecked: message.is_read,
-                                //     isCurrentUser:
-                                //         message.user_id == this.currentUserId,
-                                //     date: dateString && dateString,
-                                // });
+                                return new MessageItem({
+                                    text: message.content,
+                                    time: getTimeString(new Date(message.time)),
+                                    isChecked: message.is_read,
+                                    isCurrentUser:
+                                        message.user_id ===
+                                        sessionStorage.getItem('id'),
+                                    date: dateString && dateString,
+                                });
                             }),
                             hasMessages: !!this.selectedChat.length,
                         });
@@ -121,6 +123,9 @@ export class MessengerPage extends Block {
                         this.messengerService.GetChatMessages(socket);
                     }
                 } catch (e) {
+                    this.profileService.LogOut();
+                    this.RouterService.go(AppRoutes.AUTH);
+                    window.location.reload();
                     console.log(e);
                 }
             });

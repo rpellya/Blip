@@ -32,7 +32,8 @@ export class AuthService {
         if (response.status === 200) {
             if (formType === 'signup') {
                 const id = JSON.parse(response.response)?.id;
-                localStorage.setItem('id', id);
+                sessionStorage.setItem('id', id);
+                return response;
             } else {
                 const result = await this.requestService.get(
                     getEndPoint(authEndPoint, 'user'),
@@ -43,9 +44,9 @@ export class AuthService {
                 );
 
                 if (result.status === 200) {
-                    const data = JSON.parse(result.response)?.data;
+                    const data = JSON.parse(result.response);
                     if (data) {
-                        localStorage.setItem('id', data.id);
+                        sessionStorage.setItem('id', data.id);
                     }
                 }
                 return result;
