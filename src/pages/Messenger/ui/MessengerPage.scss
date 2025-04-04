@@ -11,9 +11,6 @@
         padding: 0 10px;
 
         .sidebar-header {
-            display: flex;
-            flex-direction: column;
-            align-items: end;
             border-bottom: 1px solid #eaeaea;
             padding: 15px 0;
 
@@ -225,6 +222,40 @@
                 top: 18px;
                 right: 18px;
             }
+        }
+    }
+}
+
+@media (width <= 620px) {
+    .messenger-page-container {
+        .messenger-page-sidebar {
+            width: 80px;
+
+            .sidebar-header {
+                .search-input {
+                    padding: 0;
+                }
+
+                .sidebar-header__buttons {
+                    display: block;
+
+                    .button__to_profile {
+                        .button-icon {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .sidebar-page__chats_list {
+                .chat-card__header {
+                    display: none;
+                }
+            }
+        }
+
+        .messenger-page-chat {
+            padding: 0 6px;
         }
     }
 }
