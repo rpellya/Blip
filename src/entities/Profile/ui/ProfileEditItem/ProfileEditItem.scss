@@ -1,0 +1,33 @@
+.profile-edit-item-container {
+    .profile-edit-item {
+        width: 100%;
+        margin-top: 10px;
+
+        .input-group {
+            .input-group-container {
+                height: 34px;
+                display: flex;
+                flex-direction: row;
+
+                .input-label {
+                    max-width: 200px;
+                }
+
+                .input-field {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .profile-edit__error-text {
+        color: var(--error-color-ff);
+        text-align: right;
+    }
+
+    &:not(:last-child) {
+        .profile-edit-item {
+            border-bottom: 1px solid var(--border-color-ea);
+        }
+    }
+}

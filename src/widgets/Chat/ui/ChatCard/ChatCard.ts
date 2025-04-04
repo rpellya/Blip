@@ -1,23 +1,28 @@
 import template from './ChatCard.hbs';
-import { Chat } from '../../model/types/schema';
 import Block from 'shared/lib/Block';
+import { UserAvatar } from 'entities/UserAvatar';
 import './ChatCard.scss';
 
-export interface ChatCardProps {
-    chat: Chat;
-    isActive?: boolean;
-    className?: string;
-    onBlur?: () => void;
+interface ChatCardProps {
+    userName: string;
+    message: string;
+    time: string;
+    newMessagesCount: number;
+    avatarIconSrc: string;
+    avatarImageSrc?: string;
+    onClick: () => Promise<void>;
 }
 
 export class ChatCard extends Block {
     constructor(props: ChatCardProps) {
-        const { chat, isActive, onBlur } = props;
-
         super({
-            ...chat,
-            className: isActive ? 'chat-card chat-card--active' : 'chat-card',
-            events: { blur: () => onBlur?.() },
+            ...props,
+            UserAvatar: new UserAvatar({
+                className: 'chat-avatar',
+                iconSrc: props.avatarIconSrc,
+                imageSrc: props.avatarImageSrc,
+            }),
+            events: { click: props.onClick },
         });
     }
 

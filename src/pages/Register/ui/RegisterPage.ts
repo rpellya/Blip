@@ -53,14 +53,15 @@ export class RegisterPage extends Block {
     constructor() {
         super({
             AuthForm: new AuthForm({
+                formType: 'signup',
                 formId: 'register-form',
                 title: 'Регистрация',
                 AuthFields: signUpFields,
                 submitButton: {
                     text: 'Зарегистрироваться',
-                    onClick: () => this.RouterService.go(AppRoutes.CHATS),
+                    onClick: () => this.RouterService.go(AppRoutes.MESSENGER),
                 },
-                signInButton: {
+                signUpButton: {
                     text: 'Войти',
                     onClick: () => this.RouterService.go(AppRoutes.AUTH),
                 },

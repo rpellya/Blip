@@ -3,4 +3,5 @@ export interface Message {
     time: string;
     isCurrentUser: boolean;
     isChecked?: boolean;
+    date?: string;
 }

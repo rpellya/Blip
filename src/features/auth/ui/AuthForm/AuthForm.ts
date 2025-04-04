@@ -4,9 +4,15 @@ import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
 import { validate } from 'utils/validate';
 import { AppRoutes } from 'app/lib/Router';
+import {
+    AuthService,
+    FormType,
+    UserFormData,
+} from '../../model/service/authForm';
 import './AuthForm.scss';
 
 interface AuthFormProps {
+    formType: FormType;
     title: string;
     formId: string;
     AuthFields: {
@@ -18,13 +24,15 @@ interface AuthFormProps {
         text: string;
         onClick: () => void;
     };
-    signInButton: {
+    signUpButton: {
         text: string;
         onClick: () => void;
     };
 }
 
 export class AuthForm extends Block {
+    protected readonly authService = new AuthService();
+
     constructor(props: AuthFormProps) {
         super({
             ...props,
@@ -54,39 +62,61 @@ export class AuthForm extends Block {
                         },
                     }),
             ),
-            authButton: new Button({
+            SubmitButton: new Button({
                 text: props.submitButton.text,
                 theme: 'background',
-                onClick: () => {
+                onClick: async () => {
                     let hasErrors = false;
+                    const userData: UserFormData = {} as never;
                     const form = document.getElementById(
                         `${props.formId}`,
                     ) as HTMLFormElement;
                     const formData = new FormData(form);
 
-                    props.AuthFields.forEach((field, index) => {
+                    props.AuthFields.map(async (field, index) => {
                         const fieldValue = formData.get(field.inputName);
                         const errMessage = validate(
                             field.inputName,
                             fieldValue as string,
                             true,
                         );
-                        if (errMessage) {
+
+                        if (errMessage || !fieldValue) {
                             hasErrors = true;
                             const field = this.lists.AuthFields[index] as Input;
                             field.setProps({ error: errMessage });
+
                             return;
                         }
-                        console.log(`${field.inputName}: ${fieldValue}`);
-                        if (hasErrors) return;
 
-                        this.RouterService.go(AppRoutes.CHATS);
+                        userData[field.inputName as keyof UserFormData] =
+                            fieldValue as string;
                     });
+
+                    if (hasErrors) return;
+
+                    const result = await this.authService.PostUser(
+                        props.formType,
+                        userData,
+                    );
+
+                    if (!result) return;
+
+                    if (result.status === 200) {
+                        this.RouterService.go(AppRoutes.MESSENGER);
+                        return;
+                    }
+
+                    const error = JSON.parse(result.response).reason;
+
+                    if (error === 'User already in system') {
+                        this.RouterService.go(AppRoutes.MESSENGER);
+                    }
                 },
             }),
-            signInButton: new Button({
-                ...props.signInButton,
-                text: props.signInButton.text,
+            SignUpButton: new Button({
+                ...props.signUpButton,
+                text: props.signUpButton.text,
                 type: 'button',
                 theme: 'clear',
             }),

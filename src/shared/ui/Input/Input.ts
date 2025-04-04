@@ -16,6 +16,7 @@ export interface InputProps {
     className?: string;
     error?: string;
     onBlur?: () => void;
+    onInput?: (title: string) => Promise<void>;
 }
 
 export class Input extends Block {
