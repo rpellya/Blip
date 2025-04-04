@@ -42,9 +42,7 @@ export class EditForm extends Block {
                 props.formType === 'profile'
                     ? 'Редактирование профиля'
                     : 'Изменение пароля',
-            UserAvatar: new UserAvatar({
-                iconSrc: props.avatarIconSrc,
-            }),
+            UserAvatar: new UserAvatar({ iconSrc: props.avatarIconSrc }),
             ProfileEditItems: props.ProfileEditItems.map(
                 (field, idx) =>
                     new ProfileEditItem({
@@ -79,7 +77,7 @@ export class EditForm extends Block {
                 type: 'submit',
                 onClick: async () => {
                     let hasErrors = false;
-                    const userData: UserFormData = {} as never;
+                    const userData = {} as UserFormData;
                     const form = document.getElementById(
                         `${props.formId}`,
                     ) as HTMLFormElement;

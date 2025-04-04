@@ -107,10 +107,6 @@ export class AuthForm extends Block {
                         return;
                     }
 
-                    // if (props.formType === 'signin' && result.status === 401) {
-                    //     return;
-                    // }
-
                     const error = JSON.parse(result.response).reason;
 
                     if (error === 'User already in system') {

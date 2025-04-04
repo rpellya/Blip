@@ -1,6 +1,6 @@
 import { FormType } from 'entities/Profile';
 import { Fetch } from 'utils/Fetch';
-import { API_URL, authEndPoint, getEndPoint } from 'utils/getEndPoint';
+import { authEndPoint, getEndPoint, userEndPoint } from 'utils/getEndPoint';
 
 export class ProfileEditInfoService {
     protected readonly requestService = new Fetch();
@@ -16,7 +16,7 @@ export class ProfileEditInfoService {
 
     public async PutUser(formType: FormType, formData: Record<string, string>) {
         const { status } = await this.requestService.put(
-            getEndPoint(API_URL, 'user', formType),
+            getEndPoint(userEndPoint, formType),
             {
                 data: JSON.stringify(formData),
                 method: 'PUT',
