@@ -6,6 +6,7 @@ import { validate } from 'utils/validate';
 import { Input } from 'shared/ui/Input/Input';
 import { AppRoutes } from 'app/lib/Router';
 import { ProfileEditItem } from '../ProfileEditItem/ProfileEditItem';
+import { ProfilePage } from 'pages/Profile';
 import './EditForm.scss';
 
 type UserFormData = Record<string, string>;
@@ -112,6 +113,10 @@ export class EditForm extends Block {
                     );
 
                     if (statusCode === 200) {
+                        this.RouterService.reassign(
+                            AppRoutes.PROFILE,
+                            ProfilePage,
+                        );
                         this.RouterService.go(AppRoutes.PROFILE);
                     } else if (statusCode === 401) {
                         this.RouterService.go(AppRoutes.AUTH);
@@ -123,7 +128,10 @@ export class EditForm extends Block {
                 type: 'reset',
                 text: props.cancelButtonLabel,
                 className: 'cancel-button',
-                onClick: () => this.RouterService.go(AppRoutes.PROFILE),
+                onClick: () => {
+                    this.RouterService.go(AppRoutes.PROFILE);
+                    this.RouterService.reassign(AppRoutes.PROFILE, ProfilePage);
+                },
             }),
         });
     }

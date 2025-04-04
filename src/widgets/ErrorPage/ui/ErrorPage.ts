@@ -19,7 +19,7 @@ export class ErrorPage extends Block {
                 text: props.textLink,
                 theme: 'clear',
                 onClick: () =>
-                    this.RouterService.go(props.route ?? AppRoutes.MESSANGER),
+                    this.RouterService.go(props.route ?? AppRoutes.MESSENGER),
             }),
         });
     }

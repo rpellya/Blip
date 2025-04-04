@@ -23,8 +23,9 @@ import { SearchInput } from 'shared/ui/SearchInput/SearchInput';
 import { UserAvatar } from 'entities/UserAvatar';
 import { Input } from 'shared/ui/Input/Input';
 import { getAvatarSrc } from 'utils/getEndPoint';
-import { MessageItem } from 'entities/Message';
+import { MessageForm, MessageItem } from 'entities/Message';
 import { ProfileService } from 'entities/Profile';
+import { validate } from 'utils/validate';
 import './MessengerPage.scss';
 
 export class MessengerPage extends Block {
@@ -32,6 +33,7 @@ export class MessengerPage extends Block {
     protected socket: WebSocket | null = null;
     protected selectedChat: MessageData[] = [];
     protected currentChatId: number | null = null;
+    protected currentUserId: number | null = null;
 
     protected readonly messengerService = new MessengerService();
     protected readonly profileService = new ProfileService();
@@ -81,8 +83,14 @@ export class MessengerPage extends Block {
                 imageSrc: getAvatarSrc(chatImg),
             }),
         });
+        if (!this.currentUserId) {
+            return;
+        }
 
-        const socket = await this.messengerService.ConnectToChat(chatId);
+        const socket = await this.messengerService.ConnectToChat(
+            chatId,
+            this.currentUserId,
+        );
 
         if (socket) {
             this.socket = socket;
@@ -106,26 +114,30 @@ export class MessengerPage extends Block {
                                         true,
                                     );
                                 }
-
                                 return new MessageItem({
                                     text: message.content,
                                     time: getTimeString(new Date(message.time)),
                                     isChecked: message.is_read,
                                     isCurrentUser:
-                                        message.user_id ===
-                                        sessionStorage.getItem('id'),
-                                    date: dateString && dateString,
+                                        message.user_id == this.currentUserId,
+                                    date: dateString,
                                 });
                             }),
                             hasMessages: !!this.selectedChat.length,
                         });
+                        this.scrollToLastMessage();
                     } else if (data.type !== 'pong') {
                         this.messengerService.GetChatMessages(socket);
+                        this.scrollToLastMessage();
                     }
                 } catch (e) {
                     this.profileService.LogOut();
                     this.RouterService.go(AppRoutes.AUTH);
-                    window.location.reload();
+                    this.RouterService.go(AppRoutes.AUTH);
+                    this.RouterService.reassign(
+                        AppRoutes.MESSENGER,
+                        MessengerPage,
+                    );
                     console.log(e);
                 }
             });
@@ -169,6 +181,37 @@ export class MessengerPage extends Block {
         }
     }
 
+    protected sendMessage() {
+        const form = document.getElementById('messageForm') as HTMLFormElement;
+        const formData = new FormData(form);
+        const input = document.getElementById('message') as HTMLFormElement;
+        const message = formData.get('message') as string;
+
+        if (!validate('message', message)) {
+            return;
+        }
+
+        if (this.socket) {
+            this.socket.send(
+                JSON.stringify({
+                    content: message,
+                    type: 'message',
+                }),
+            );
+            input.value = '';
+
+            this.messengerService.GetChatMessages(this.socket);
+            this.scrollToLastMessage();
+        }
+    }
+
+    protected scrollToLastMessage() {
+        const chatContainer = document.getElementById('chat-history-container');
+        console.log(chatContainer);
+        if (chatContainer && chatContainer.lastElementChild) {
+            chatContainer.lastElementChild.scrollIntoView();
+        }
+    }
     constructor() {
         super({
             AddNewChatButton: new Button({
@@ -335,27 +378,23 @@ export class MessengerPage extends Block {
                 theme: 'background',
                 iconSrc: arrowRightSendIcon,
                 className: 'message-send-button',
-                onClick: () => {
-                    const form = document.getElementById(
-                        'messageForm',
-                    ) as HTMLFormElement;
-                    const formData = new FormData(form);
-
-                    if (this.socket) {
-                        this.socket.send(
-                            JSON.stringify({
-                                content: formData.get('message'),
-                                type: 'message',
-                            }),
-                        );
-                        this.messengerService.GetChatMessages(this.socket);
-                    }
-                },
+                onClick: () => this.sendMessage(),
+            }),
+            MessageForm: new MessageForm({
+                formId: 'messageForm',
+                onSubmit: () => this.sendMessage(),
             }),
             formId: 'messageForm',
         });
 
-        setTimeout(async () => this.updateChats());
+        setTimeout(async () => {
+            this.updateChats();
+            const result = await this.messengerService.GetUser();
+
+            if (result?.status === 200) {
+                this.currentUserId = JSON.parse(result.response)?.id;
+            }
+        });
     }
 
     render(): string {

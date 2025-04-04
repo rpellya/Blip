@@ -2,7 +2,17 @@ export const API_URL = 'https://ya-praktikum.tech/api/v2';
 export const WS_API_URL = 'wss://ya-praktikum.tech/ws';
 
 export const getEndPoint = (...args: string[]): string => {
-    return args.join('/');
+    const paths = args.map((str) => {
+        if (str.startsWith('/')) {
+            return str.slice(1);
+        }
+        if (str.endsWith('/')) {
+            return str.slice(0, str.length - 1);
+        }
+        return str;
+    });
+
+    return encodeURI(paths.join('/'));
 };
 
 export const authEndPoint = getEndPoint(API_URL, 'auth');

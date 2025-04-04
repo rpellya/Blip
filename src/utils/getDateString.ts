@@ -33,16 +33,16 @@ export const getDateString = (
         }
     }
 
-    if (todayDay < dateDay && todayYear === dateYear) {
-        const month = `0${dateMonth}`.slice(-2);
-
-        return `${dateDay}.${month}`;
-    }
-
     if (todayYear !== dateYear) {
         const month = `0${dateMonth}`.slice(-2);
 
         return `${dateDay}.${month}.${dateYear}`;
+    }
+
+    if (todayDay > dateDay || todayMonth > dateMonth) {
+        const month = `0${dateMonth}`.slice(-2);
+
+        return `${dateDay}.${month}`;
     }
 
     return '';

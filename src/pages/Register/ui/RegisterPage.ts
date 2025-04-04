@@ -59,7 +59,7 @@ export class RegisterPage extends Block {
                 AuthFields: signUpFields,
                 submitButton: {
                     text: 'Зарегистрироваться',
-                    onClick: () => this.RouterService.go(AppRoutes.MESSANGER),
+                    onClick: () => this.RouterService.go(AppRoutes.MESSENGER),
                 },
                 signUpButton: {
                     text: 'Войти',

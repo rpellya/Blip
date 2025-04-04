@@ -1,13 +1,16 @@
 <div class='chat-history-message-container'>
     {{#if date}}
-        <p class='chat-history-date'>
-            {{date}}
-        </p>
+        <p class='chat-history-date'>{{date}}</p>
     {{/if}}
-    <div class='chat-user-message-container'>
+    <div class='chat-user-message-container{{#if isCurrentUser}}__current{{/if}}'>
         <p>{{text}}</p>
-        <p class='chat-user-message-time'>
-            {{time}}
-        </p>
+        <div class='chat-user-message-time{{#if isCurrentUser}}__current{{/if}}'>
+            {{#if isCurrentUser}}
+                {{#if isChecked}}
+                    <image src={{checkedIconSrc}} />
+                {{/if}}
+            {{/if}}
+            <time>{{time}}</time>
+        </div>
     </div>
 </div>

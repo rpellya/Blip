@@ -18,7 +18,7 @@ export default class App {
             .registerRoute(AppRoutes.AUTH, LoginPage)
             ?.registerRoute(AppRoutes.SIGN_UP, RegisterPage)
             ?.registerRoute(AppRoutes.PROFILE, ProfilePage)
-            ?.registerRoute(AppRoutes.MESSANGER, MessengerPage)
+            ?.registerRoute(AppRoutes.MESSENGER, MessengerPage)
             ?.registerRoute(AppRoutes.SETTINGS, ProfileEditInfoPage)
             ?.registerRoute(
                 AppRoutes.PASSWORD_SETTINGS,

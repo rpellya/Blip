@@ -1,0 +1,59 @@
+.chat-history-message-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &:first-child {
+        margin-top: 10px;
+    }
+
+    &:last-child {
+        margin-bottom: 10px;
+    }
+
+    .chat-history-date {
+        text-align: center;
+        color: var(--gray99);
+    }
+
+    .chat-user-message-container,
+    .chat-user-message-container__current {
+        max-width: 380px;
+        min-width: 80px;
+        font-size: 13px;
+        line-height: 15px;
+        padding: 11px;
+        position: relative;
+    }
+
+    .chat-user-message-time,
+    .chat-user-message-time__current {
+        display: flex;
+        justify-content: right;
+        margin-top: 2px;
+        font-size: 9px;
+        line-height: 9px;
+        gap: 1px;
+    }
+
+    .chat-user-message-container {
+        background-color: var(--white-f8);
+        border-radius: 0 12px 12px;
+        align-self: start;
+
+        &__current {
+            background-color: var(--skyblue);
+            border-radius: 12px 12px 0;
+            align-self: end;
+        }
+    }
+
+    .chat-user-message-time {
+        color: var(--gray99);
+
+        &__current {
+            color: var(--primary-color);
+        }
+    }
+}

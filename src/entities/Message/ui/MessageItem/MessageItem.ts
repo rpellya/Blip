@@ -1,19 +1,18 @@
 import Block from 'shared/lib/Block';
 import template from './MessageItem.hbs';
-import currentUserTemplate from './CurrentMessageItem.hbs';
 import { Message } from '../../model/types/MessageSchema';
-// import './MessageItem.scss';
+import checkedIcon from 'assets/icons/checked.svg';
+import './MessageItem.scss';
 
 export class MessageItem extends Block {
     constructor({ ...message }: Message) {
-        super({ ...message });
+        super({
+            ...message,
+            checkedIconSrc: checkedIcon,
+        });
     }
 
-    override render() {
-        if (this.props.isCurrentUser) {
-            return currentUserTemplate;
-        }
-
+    render() {
         return template;
     }
 }

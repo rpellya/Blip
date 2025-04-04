@@ -103,14 +103,14 @@ export class AuthForm extends Block {
                     if (!result) return;
 
                     if (result.status === 200) {
-                        this.RouterService.go(AppRoutes.MESSANGER);
+                        this.RouterService.go(AppRoutes.MESSENGER);
                         return;
                     }
 
                     const error = JSON.parse(result.response).reason;
 
                     if (error === 'User already in system') {
-                        this.RouterService.go(AppRoutes.MESSANGER);
+                        this.RouterService.go(AppRoutes.MESSENGER);
                     }
                 },
             }),

@@ -11,7 +11,7 @@ export class NotFoundPage extends Block {
                 textLink: 'Вернуться к чатам',
                 code: 404,
                 message: 'Страница не найдена',
-                route: AppRoutes.MESSANGER,
+                route: AppRoutes.MESSENGER,
             }),
         });
     }

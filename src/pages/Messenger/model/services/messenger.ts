@@ -1,5 +1,6 @@
 import { Fetch } from 'utils/Fetch';
 import {
+    authEndPoint,
     CHATS_ENDPOINT,
     getEndPoint,
     userEndPoint,
@@ -101,7 +102,22 @@ export class MessengerService {
         }
     }
 
-    public async ConnectToChat(chatId: number) {
+    public async GetUser() {
+        try {
+            const result = await this.requestService.get(
+                getEndPoint(authEndPoint, 'user'),
+                {
+                    method: 'GET',
+                    timeout: 0,
+                },
+            );
+            return result;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    public async ConnectToChat(chatId: number, userId: number) {
         try {
             const result = await this.requestService.post(
                 getEndPoint(CHATS_ENDPOINT, `token/${chatId}`),
@@ -113,7 +129,6 @@ export class MessengerService {
 
             if (result.status === 200) {
                 const token = JSON.parse(result.response).token;
-                const userId = sessionStorage.getItem('id');
                 const socket = new WebSocket(
                     getEndPoint(WS_API_URL, `chats/${userId}/${chatId}`, token),
                 );

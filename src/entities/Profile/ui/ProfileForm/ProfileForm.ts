@@ -7,6 +7,7 @@ import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import { ProfileService } from '../../model/service/profileService';
 import { ProfileInfoItem } from '../ProfileInfoItem/ProfileInfoItem';
 import { UserData } from '../../model/types/userDataSchema';
+import { MessengerPage } from 'pages/Messenger';
 import './ProfileForm.scss';
 
 interface ProfileFormProps {
@@ -65,15 +66,18 @@ export class ProfileForm extends Block {
                     const result = await this.profileService.LogOut();
 
                     if (result === 200) {
-                        sessionStorage.removeItem('id');
                         this.RouterService.go(AppRoutes.AUTH);
+                        this.RouterService.reassign(
+                            AppRoutes.MESSENGER,
+                            MessengerPage,
+                        );
                     }
                 },
             }),
             BackButton: new Button({
                 text: 'Назад',
                 theme: 'background',
-                onClick: () => this.RouterService.go(AppRoutes.MESSANGER),
+                onClick: () => this.RouterService.go(AppRoutes.MESSENGER),
             }),
         });
 

@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class='chat-history-container'>
+            <div id='chat-history-container' class='chat-history-container'>
                 {{#if hasMessages}}
                     {{{Messages}}}
                 {{else}}
@@ -43,9 +43,7 @@
 
             <div class='chat-footer-container'>
                 {{{TackButton}}}
-                <form id={{formId}} class='message-form'>
-                    {{{InputMessage}}}
-                </form>
+                {{{MessageForm}}}
                 {{{SendButton}}}
             </div>
         {{else}}

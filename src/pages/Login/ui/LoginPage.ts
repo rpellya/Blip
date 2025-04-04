@@ -28,7 +28,7 @@ export class LoginPage extends Block {
                 AuthFields: signInFields,
                 submitButton: {
                     text: 'Войти',
-                    onClick: () => this.RouterService.go(AppRoutes.MESSANGER),
+                    onClick: () => this.RouterService.go(AppRoutes.MESSENGER),
                 },
                 signUpButton: {
                     text: 'Нет аккаунта?',
