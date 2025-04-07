@@ -16,7 +16,6 @@ export type FormType = 'profile' | 'password';
 interface EditFormProps {
     formType: FormType;
     avatarImageSrc?: string;
-    avatarIconSrc: string;
     ProfileEditItems: {
         label: string;
         value?: string;
@@ -24,6 +23,7 @@ interface EditFormProps {
         type: string;
         inputId: string;
     }[];
+    onUploadAvatar?: (file: File) => void;
     SubmitButton: {
         label: string;
         onSubmit: (
@@ -37,13 +37,40 @@ interface EditFormProps {
 
 export class EditForm extends Block {
     constructor(props: EditFormProps) {
+        const hasImage = !!props.avatarImageSrc;
+        const isProfile = props.formType === 'profile';
+
         super({
             ...props,
+            isProfile,
             title:
                 props.formType === 'profile'
                     ? 'Редактирование профиля'
                     : 'Изменение пароля',
-            UserAvatar: new UserAvatar({ iconSrc: props.avatarIconSrc }),
+            UserAvatar: new UserAvatar({
+                className:
+                    isProfile && hasImage ? 'has-image edit-form-avatar' : '',
+                imageSrc: props.avatarImageSrc,
+                onClick: () => {
+                    if (isProfile) {
+                        const fileInput = document.getElementById(
+                            'avatar',
+                        ) as HTMLInputElement;
+                        fileInput?.click();
+                        fileInput.onchange = (e) => {
+                            if (!props.onUploadAvatar) {
+                                return;
+                            }
+                            const input = e.target as HTMLInputElement;
+                            const file = input.files?.[0];
+
+                            if (file) {
+                                props.onUploadAvatar(file);
+                            }
+                        };
+                    }
+                },
+            }),
             ProfileEditItems: props.ProfileEditItems.map(
                 (field, idx) =>
                     new ProfileEditItem({

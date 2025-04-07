@@ -2,8 +2,8 @@ import Block from 'shared/lib/Block';
 import { ProfileEditInfoService } from '../../model/service/profileEditInfo';
 import template from './ProfileEditInfo.hbs';
 import { EditForm, FormType } from 'entities/Profile';
-import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import { AppRoutes } from 'app/lib/Router';
+import { getAvatarSrc } from 'utils/getEndPoint';
 
 const getProfileEditItems = (data: Record<string, string>) => [
     {
@@ -65,9 +65,11 @@ export class ProfileEditInfoPage extends Block {
                 this.setProps({
                     EditForm: new EditForm({
                         formType: 'profile',
-                        avatarIconSrc: pictureFillIcon,
+                        avatarImageSrc: getAvatarSrc(data.avatar),
                         cancelButtonLabel: 'Отмена',
                         formId: 'formEditProfile',
+                        onUploadAvatar: (file: File) =>
+                            this.editFormService.UploadAvatar(file),
                         ProfileEditItems: getProfileEditItems(data),
                         SubmitButton: {
                             label: 'Сохранить',

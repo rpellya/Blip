@@ -1,10 +1,10 @@
 import Block from 'shared/lib/Block';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import template from './UserAvatar.hbs';
+import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import './UserAvatar.scss';
 
 interface UserAvatarProps {
-    iconSrc: string;
     imageSrc?: string;
     className?: string;
     onClick?: () => void;
@@ -15,7 +15,7 @@ export class UserAvatar extends Block {
         super({
             ...props,
             Avatar: new Avatar({
-                imageSrc: props.iconSrc,
+                imageSrc: props.imageSrc || pictureFillIcon,
                 className: props.className ?? '',
             }),
             events: {

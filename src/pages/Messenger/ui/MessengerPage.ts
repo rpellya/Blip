@@ -78,7 +78,6 @@ export class MessengerPage extends Block {
         this.setProps({
             selectedChatTitle: title,
             ChatAvatar: new UserAvatar({
-                iconSrc: pictureFillIcon,
                 className: chatImg ? 'full-chat-img-avatar' : 'chat-avatar',
                 imageSrc: getAvatarSrc(chatImg),
             }),
@@ -207,7 +206,6 @@ export class MessengerPage extends Block {
 
     protected scrollToLastMessage() {
         const chatContainer = document.getElementById('chat-history-container');
-        console.log(chatContainer);
         if (chatContainer && chatContainer.lastElementChild) {
             chatContainer.lastElementChild.scrollIntoView();
         }

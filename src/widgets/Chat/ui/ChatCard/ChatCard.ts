@@ -19,7 +19,6 @@ export class ChatCard extends Block {
             ...props,
             UserAvatar: new UserAvatar({
                 className: 'chat-avatar',
-                iconSrc: props.avatarIconSrc,
                 imageSrc: props.avatarImageSrc,
             }),
             events: { click: props.onClick },

@@ -3,12 +3,12 @@ import Block from 'shared/lib/Block';
 import { Button } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'app/lib/Router';
 import { UserAvatar } from 'entities/UserAvatar';
-import pictureFillIcon from 'assets/icons/pictureFill.svg';
 import { ProfileService } from '../../model/service/profileService';
 import { ProfileInfoItem } from '../ProfileInfoItem/ProfileInfoItem';
 import { UserData } from '../../model/types/userDataSchema';
 import { MessengerPage } from 'pages/Messenger';
 import './ProfileForm.scss';
+import { getAvatarSrc } from 'utils/getEndPoint';
 
 interface ProfileFormProps {
     formId: string;
@@ -47,7 +47,6 @@ export class ProfileForm extends Block {
     constructor(props: ProfileFormProps) {
         super({
             ...props,
-            UserAvatar: new UserAvatar({ iconSrc: pictureFillIcon }),
             EditProfileButton: new Button({
                 text: 'Изменить данные',
                 theme: 'clear',
@@ -87,9 +86,14 @@ export class ProfileForm extends Block {
             if (result.status === 200) {
                 const data: UserData = JSON.parse(result.response);
                 const profileInfoItems = getProfileInfoItems(data);
+                const hasImage = !!getAvatarSrc(data.avatar);
 
                 this.setProps({
                     userName: data.first_name || `Профиль ${data.login}`,
+                    UserAvatar: new UserAvatar({
+                        className: hasImage ? 'has-image' : '',
+                        imageSrc: getAvatarSrc(data.avatar),
+                    }),
                     ProfileInfoItems: profileInfoItems.map(
                         (item) => new ProfileInfoItem(item),
                     ),

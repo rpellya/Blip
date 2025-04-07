@@ -1,4 +1,5 @@
 export interface UserData {
+    avatar: string | null;
     email: string;
     login: string;
     first_name: string;

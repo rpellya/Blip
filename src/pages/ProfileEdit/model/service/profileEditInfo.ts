@@ -29,4 +29,23 @@ export class ProfileEditInfoService {
 
         return status;
     }
+    public async UploadAvatar(file: File) {
+        try {
+            const formData = new FormData();
+            formData.append('avatar', file);
+
+            const data = await this.requestService.put(
+                getEndPoint(userEndPoint, 'profile', 'avatar'),
+                {
+                    data: formData,
+                    method: 'PUT',
+                    timeout: 0,
+                },
+            );
+
+            return data;
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }

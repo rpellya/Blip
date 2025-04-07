@@ -14,7 +14,6 @@ interface ProfileEditItemProps {
 
 export class ProfileEditItem extends Block {
     constructor(props: ProfileEditItemProps) {
-        console.log('ProfileEditItem', props);
         super({
             ...props,
             value: props.value,
