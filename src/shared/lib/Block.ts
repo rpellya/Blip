@@ -99,15 +99,15 @@ export default class Block {
         this.eventBus().emit(Events.FLOW_CDM);
     }
 
-    private _componentDidUpdate(/*oldProps: BlockProps, newProps: BlockProps*/): void {
-        const response = this.componentDidUpdate(/*oldProps, newProps*/);
+    private _componentDidUpdate(): void {
+        const response = this.componentDidUpdate();
         if (!response) {
             return;
         }
         this._render();
     }
 
-    protected componentDidUpdate(/*oldProps: BlockProps, newProps: BlockProps*/): boolean {
+    protected componentDidUpdate(): boolean {
         return true;
     }
 
@@ -149,15 +149,44 @@ export default class Block {
         if (!nextProps) {
             return;
         }
+        const { props, children, lists } =
+            this._getChildrenPropsAndProps(nextProps);
 
-        Object.assign(this.props, nextProps);
+        Object.assign(this.props, props);
+        Object.assign(this.children, children);
+        Object.assign(this.lists, lists);
+        this._render();
+    };
+
+    public deleteLists = (...args: Array<keyof BlockProps>): void => {
+        if (!args.length) {
+            return;
+        }
+
+        args.forEach((prop) => {
+            delete this.lists?.[prop];
+        });
+
+        this._render();
+    };
+
+    public deleteChilds = (...args: Array<keyof BlockProps>): void => {
+        if (!args.length) {
+            return;
+        }
+
+        args.forEach((prop) => {
+            delete this.children?.[prop];
+        });
+
+        this._render();
     };
 
     get element(): HTMLElement | null {
         return this._element;
     }
 
-    private _render(): void {
+    public _render(): void {
         const shouldRemoveEvents = Boolean(this._element);
 
         if (shouldRemoveEvents) {

@@ -1,8 +1,8 @@
 type RequestOptions = {
     timeout: number;
-    method: Methods;
-    headers: Record<string, string>;
-    data: Document | XMLHttpRequestBodyInit | null;
+    method: `${Methods}`;
+    headers?: Record<string, string>;
+    data?: Document | XMLHttpRequestBodyInit | null;
 };
 
 type HTTPMethod = (
@@ -84,6 +84,8 @@ export class Fetch {
                 method,
                 isGet && !!data ? `${url}${queryStringify(data)}` : url,
             );
+
+            xhr.withCredentials = true; // Включение кроссдоменных запросов (чтобы могли получать куки)
 
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);

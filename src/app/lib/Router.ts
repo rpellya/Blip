@@ -5,7 +5,9 @@ export const enum AppRoutes {
     SIGN_UP = '/sign-up',
     PROFILE = '/profile',
     SERVER_ERROR = '/error-500',
-    CHATS = '/chats',
+    MESSENGER = '/messenger',
+    SETTINGS = '/settings',
+    PASSWORD_SETTINGS = '/settings-password',
 
     // last
     NOT_FOUND = '*',

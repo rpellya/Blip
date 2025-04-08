@@ -1,0 +1,20 @@
+<div class='edit-form-container'>
+    <div class='edit-form__avatar-wrapper'>
+        {{#if isProfile}}
+            <input
+                type='file'
+                id='avatar'
+                name='avatar'
+                accept='image/*'
+                class='hidden-input'
+            />
+        {{/if}}
+        {{{UserAvatar}}}
+    </div>
+    <h3 class='edit-form__title'>{{title}}</h3>
+    <form id={{formId}} class='edit-form__form'>
+        {{{ProfileEditItems}}}
+    </form>
+    {{{SubmitButton}}}
+    {{{CancelButton}}}
+</div>

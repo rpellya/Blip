@@ -4,7 +4,6 @@ import { InputProps } from './Input';
 
 export class InputField extends Block {
     constructor(props: Partial<InputProps>) {
-        console.log(props);
         super({
             ...props,
             theme: props.theme || 'default',

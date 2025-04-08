@@ -22,14 +22,15 @@ export class LoginPage extends Block {
     constructor() {
         super({
             AuthForm: new AuthForm({
+                formType: 'signin',
                 title: 'Blip',
                 formId: 'login-form',
                 AuthFields: signInFields,
                 submitButton: {
                     text: 'Войти',
-                    onClick: () => this.RouterService.go(AppRoutes.CHATS),
+                    onClick: () => this.RouterService.go(AppRoutes.MESSENGER),
                 },
-                signInButton: {
+                signUpButton: {
                     text: 'Нет аккаунта?',
                     onClick: () => this.RouterService.go(AppRoutes.SIGN_UP),
                 },
