@@ -1,5 +1,5 @@
 import template from './Button.hbs';
-import Block from '../../lib/Block';
+import Block from '../../../app/lib/Block';
 import './Button.scss';
 
 export type ButtonVariant =

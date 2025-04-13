@@ -1,5 +1,5 @@
 import template from './MessengerPage.hbs';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { AppRoutes } from 'app/lib/Router';
 import { MessengerService } from '../model/services/messenger';
 import { isSameDate } from 'utils/isSameDate';

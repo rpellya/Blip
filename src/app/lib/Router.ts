@@ -1,4 +1,4 @@
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 
 export const enum AppRoutes {
     AUTH = '/',
@@ -17,7 +17,7 @@ type RouteProps = {
     rootQuery: string;
 };
 
-const isEqual = (lhs: string, rhs: string) => {
+export const isEqual = (lhs: string, rhs: string) => {
     return rhs === AppRoutes.NOT_FOUND ? true : lhs === rhs;
 };
 

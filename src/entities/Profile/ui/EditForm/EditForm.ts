@@ -1,6 +1,6 @@
 import { UserAvatar } from 'entities/UserAvatar';
 import template from './EditForm.hbs';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { Button } from 'shared/ui/Button/Button';
 import { validate } from 'utils/validate';
 import { Input } from 'shared/ui/Input/Input';

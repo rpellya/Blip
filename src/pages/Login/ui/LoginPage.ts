@@ -1,5 +1,5 @@
 import { AuthForm } from 'features/auth';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import template from './LoginPage.hbs';
 import { AppRoutes } from 'app/lib/Router';
 import './LoginPage.scss';

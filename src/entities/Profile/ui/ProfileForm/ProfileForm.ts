@@ -1,5 +1,5 @@
 import template from './ProfileForm.hbs';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { Button } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'app/lib/Router';
 import { UserAvatar } from 'entities/UserAvatar';
