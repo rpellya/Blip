@@ -1,5 +1,5 @@
 import { AuthForm } from 'features/auth/ui/AuthForm/AuthForm';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import template from './RegisterPage.hbs';
 import { AppRoutes } from 'app/lib/Router';
 

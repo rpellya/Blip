@@ -1,4 +1,4 @@
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import template from './ProfileEditItem.hbs';
 import { Input } from 'shared/ui/Input/Input';
 import './ProfileEditItem.scss';

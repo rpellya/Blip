@@ -1,4 +1,4 @@
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { UserAvatar } from 'entities/UserAvatar';
 import { Button } from 'shared/ui/Button/Button';
 import template from './ChatUser.hbs';

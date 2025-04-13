@@ -1,5 +1,5 @@
 import template from './ChatCard.hbs';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { UserAvatar } from 'entities/UserAvatar';
 import './ChatCard.scss';
 

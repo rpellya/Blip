@@ -1,4 +1,4 @@
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import template from './Input.hbs';
 import { InputField } from './InputField';
 import './Input.scss';

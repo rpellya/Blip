@@ -1,5 +1,5 @@
 import template from './ErrorPage.hbs';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import './ErrorPage.scss';
 import { Button } from 'shared/ui/Button/Button';
 import { AppRoutes } from 'app/lib/Router';

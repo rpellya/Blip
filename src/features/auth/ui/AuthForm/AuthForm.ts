@@ -1,5 +1,5 @@
 import template from './AuthForm.hbs';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
 import { validate } from 'utils/validate';

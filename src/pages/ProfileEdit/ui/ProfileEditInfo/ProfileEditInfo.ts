@@ -1,4 +1,4 @@
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { ProfileEditInfoService } from '../../model/service/profileEditInfo';
 import template from './ProfileEditInfo.hbs';
 import { EditForm, FormType } from 'entities/Profile';

@@ -1,6 +1,6 @@
 import template from './NotFound.hbs';
 import { ErrorPage } from 'widgets/ErrorPage';
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import { AppRoutes } from 'app/lib/Router';
 import './NotFoundPage.scss';
 

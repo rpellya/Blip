@@ -1,4 +1,4 @@
-import Block from 'shared/lib/Block';
+import Block from 'app/lib/Block';
 import template from './MessageItem.hbs';
 import { Message } from '../../model/types/MessageSchema';
 import checkedIcon from 'assets/icons/checked.svg';
